@@ -5,31 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Project-MD3-JAVA-.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/ColorConsole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dto/request/SignInDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dto/request/SignUpDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dto/response/ResponseMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/RoleName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/IGenericService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/role/IRoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/role/RoleServiceIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/user/IUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/service/user/UserServiceIMPL.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/ProfileView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/UserView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/category.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/category/CategoryServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/category/ICategoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/user/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/user/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/user/UserServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/user/UserServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ProfileView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +47,14 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "D:/Java/Project-MD3-JAVA-Youtube",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -100,7 +91,7 @@
       <workItem from="1680662466345" duration="1203000" />
       <workItem from="1680665865514" duration="1593000" />
       <workItem from="1680667777202" duration="4888000" />
-      <workItem from="1680681312454" duration="6040000" />
+      <workItem from="1680681312454" duration="11027000" />
     </task>
     <servers />
   </component>

@@ -41,19 +41,14 @@ public class UserView {
             username = Config.scanner().nextLine();
             if (!Config.validateUsername(username))
                 System.err.println(Config.FORMAT_ALERT + " can't be void, can't include space, max is 30 characters!");
-            if (email.equals(username))
-                System.err.println("Can't be same with email!");
-        } while (!Config.validateUsername(username) || email.equals(username));
+        } while (!Config.validateUsername(username));
         do {
             System.out.println("Enter the password: ");
             password = Config.scanner().nextLine();
             if (!Config.validatePassword(password))
                 System.err.println(Config.FORMAT_ALERT + "password must include at least: 1 special symbol, 1 upper word, 1 lower word");
         } while (!Config.validatePassword(password));
-//        System.out.println("Enter the role");
-//        String role = Config.scanner().nextLine();
         Set<String> strRole = new HashSet<>();
-//        strRole.add(role);
         SignUpDTO sign = new SignUpDTO(id, name, username, email, password, strRole);
         while (true) {
             ResponseMessage responseMessage = userController.register(sign);
@@ -110,6 +105,22 @@ public class UserView {
             } else {
                 System.out.println("Login successful!");
                 new Navbar();
+                break;
+            }
+        }
+    }
+
+    public void logout() {
+        while (true) {
+            System.out.println("Are you sure to log out? - Please type Y/N?");
+            String choice = Config.validateString();
+            if (choice.equalsIgnoreCase("y")){
+                userController.logout();
+                new Navbar();
+                break;
+            }
+            if (choice.equalsIgnoreCase("n")){
+                new ProfileView();
                 break;
             }
         }

@@ -11,6 +11,7 @@ public class Config<T> {
     public static final String EMPTY_ALERT = "Can't be void, please re-enter";
     public static final String PATH_USER = "src/database/user.txt";
     public static final String PATH_USER_LOGIN = "src/database/user_login.txt";
+    public static final String PATH_CATEGORY = "src/database/category.txt";
 
     public static Scanner scanner() {
         Scanner sc = new Scanner(System.in);

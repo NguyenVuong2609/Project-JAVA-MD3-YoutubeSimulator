@@ -44,4 +44,7 @@ public class UserController {
     public User getUserLogin(){
         return userService.getCurentUser();
     }
+    public void logout(){
+        userService.logout();
+    }
 }

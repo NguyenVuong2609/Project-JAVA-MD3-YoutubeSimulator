@@ -3,6 +3,7 @@ package service.user;
 import config.Config;
 import model.User;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +65,9 @@ public class UserServiceIMPL implements IUserService {
     public boolean checkLogin(String username, String password) {
         List<User> userLogin = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(username) && userList.get(i).getPassword().equals(password)){
+            if (userList.get(i).getUsername().equals(username) && userList.get(i).getPassword().equals(password)) {
                 userLogin.add(userList.get(i));
-                new Config<User>().writeToFile(Config.PATH_USER_LOGIN,userLogin);
+                new Config<User>().writeToFile(Config.PATH_USER_LOGIN, userLogin);
                 return true;
             }
         }
@@ -75,10 +76,23 @@ public class UserServiceIMPL implements IUserService {
 
     @Override
     public User getCurentUser() {
-        if (new Config<User>().readFromFile(Config.PATH_USER_LOGIN).size()!=0){
+        if (new Config<User>().readFromFile(Config.PATH_USER_LOGIN).size() != 0) {
             User user = new Config<User>().readFromFile(Config.PATH_USER_LOGIN).get(0);
             return user;
         }
         return null;
+    }
+
+    @Override
+    public void logout() {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(Config.PATH_USER_LOGIN);
+            fileOutputStream.write(("").getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException f) {
+            System.err.println("File not found!");
+        } catch (IOException i) {
+            System.err.println("IOE exception!");
+        }
     }
 }

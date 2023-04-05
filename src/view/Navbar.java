@@ -19,13 +19,16 @@ public class Navbar {
     public Navbar() {
         User user = userController.getUserLogin();
         if (user != null) {
-            System.out.println("Welcome " + user.getName());
-            int choice = Config.scanner().nextInt();
-            switch (choice) {
-                case 1:
-                    new ProfileView();
-                    break;
+            try {
+                for (int i = 5; i > 0; i--) {
+                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            System.out.println("Welcome " + user.getName());
+            new ProfileView();
         } else {
             System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ YOUTUBE MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
             System.out.printf("|" + "  1. %-87s" + "|\n", "Register");
