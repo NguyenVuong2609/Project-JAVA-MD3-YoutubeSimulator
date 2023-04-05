@@ -20,7 +20,7 @@ public class Navbar {
         User user = userController.getUserLogin();
         if (user != null) {
             try {
-                for (int i = 5; i > 0; i--) {
+                for (int i = 3; i > 0; i--) {
                     System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
                     Thread.sleep(1000);
                 }

@@ -38,4 +38,13 @@ public class CategoryServiceIMPL implements ICategoryService{
         categoryList.remove(index);
         new Config<Category>().writeToFile(Config.PATH_CATEGORY, categoryList);
     }
+
+    @Override
+    public boolean existByName(String name) {
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getName().equalsIgnoreCase(name))
+                return true;
+        }
+        return false;
+    }
 }

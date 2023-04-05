@@ -1,5 +1,6 @@
 package view;
 
+import config.ColorConsole;
 import config.Config;
 import controller.UserController;
 import dto.request.SignInDTO;
@@ -53,14 +54,31 @@ public class UserView {
         while (true) {
             ResponseMessage responseMessage = userController.register(sign);
             if (responseMessage.getMessage().equals("user_existed")) {
-                System.err.println("user name existed!");
-                username = Config.scanner().nextLine();
+                System.err.println("User name existed!");
+                do {
+                    System.out.println("Enter the username: ");
+                    username = Config.scanner().nextLine();
+                    if (!Config.validateUsername(username))
+                        System.err.println(Config.FORMAT_ALERT + " can't be void, can't include space, max is 30 characters!");
+                } while (!Config.validateUsername(username));
                 sign.setUsername(username);
             } else if (responseMessage.getMessage().equals("email_existed")) {
-                System.err.println("email name existed!");
-                email = Config.scanner().nextLine();
-                sign = new SignUpDTO(id, name, username, email, password, strRole);
+                System.err.println("Email existed!");
+                do {
+                    System.out.println("Enter the email: ");
+                    email = Config.scanner().nextLine();
+                    if (!Config.validateEmail(email))
+                        System.err.println(Config.FORMAT_ALERT);
+                } while (!Config.validateEmail(email));
+                sign.setEmail(email);
+//                sign = new SignUpDTO(id, name, username, email, password, strRole);
             } else if (responseMessage.getMessage().equals("create_success")) {
+                System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 formLogin();
                 break;
             }
@@ -73,7 +91,7 @@ public class UserView {
         System.out.println("Type BACK to return Menu: ");
         String back = Config.scanner().nextLine();
         if (back.equalsIgnoreCase("back")) {
-            new Navbar();
+            new ProfileView();
         }
     }
 
