@@ -55,6 +55,7 @@ public class UserController {
     }
 
     public void updateUser(User user, int method) {
+        //! Method để phân biệt change role(1) và block user(2)
         if (method == 1){
             Set<Role> roleSet = user.getRoles();
             List<Role> roleList = new ArrayList<>(roleSet);
