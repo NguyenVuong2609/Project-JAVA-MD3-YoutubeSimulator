@@ -3,14 +3,9 @@ package view;
 import config.ColorConsole;
 import config.Config;
 import controller.UserController;
-import model.Role;
-import model.RoleName;
 import model.User;
-import service.role.IRoleService;
-import service.role.RoleServiceIMPL;
-import service.user.UserServiceIMPL;
-
-import java.util.*;
+import view.admin.ProfileView;
+import view.user.UserView;
 
 public class Navbar {
     UserController userController = new UserController();

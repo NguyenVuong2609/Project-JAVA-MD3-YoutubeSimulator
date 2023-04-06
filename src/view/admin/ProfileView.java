@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import config.ColorConsole;
 import config.Config;
@@ -6,6 +6,8 @@ import controller.UserController;
 import model.Role;
 import model.RoleName;
 import model.User;
+import view.user.MyChannelView;
+import view.user.UserView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,14 +45,17 @@ public class ProfileView {
                     }
                 } else if (roles.get(0).getName() == RoleName.USER) {
                     System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ USER MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
-                    System.out.printf("|" + "  1. %-83s" + "|\n", "Upload video");
-                    System.out.printf("|" + "  2. %-83s" + "|\n", "My channel");
-                    System.out.printf("|" + "  3. %-83s" + "|\n", "Log out");
+                    System.out.printf("|" + "  1. %-84s" + "|\n", "Upload video");
+                    System.out.printf("|" + "  2. %-84s" + "|\n", "My channel");
+                    System.out.printf("|" + "  3. %-84s" + "|\n", "Log out");
                     System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ USER MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
                     System.out.println("Please enter your choice: ");
                     int choice = Config.validateInt();
                     switch (choice) {
                         case 1:
+                            break;
+                        case 2:
+                            new MyChannelView();
                             break;
                         case 3:
                             new UserView().logout();

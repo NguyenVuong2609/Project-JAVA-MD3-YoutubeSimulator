@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="" />
+    <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/database/channel.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Channel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/ListVideo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/channel/ChannelServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/channel/IChannelService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/video/IVideoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/admin/VideoServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/CategoryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/ProfileView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/UserManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +84,7 @@
       <module name="Project-MD3-JAVA-" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="view.*" />
+          <option name="PATTERN" value="view.admin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,7 +114,7 @@
       <workItem from="1680667777202" duration="4888000" />
       <workItem from="1680681312454" duration="11132000" />
       <workItem from="1680700499021" duration="6899000" />
-      <workItem from="1680741882690" duration="16908000" />
+      <workItem from="1680741882690" duration="24852000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import config.ColorConsole;
 import config.Config;
@@ -6,6 +6,7 @@ import controller.UserController;
 import model.Role;
 import model.RoleName;
 import model.User;
+import view.user.UserView;
 
 import java.util.ArrayList;
 import java.util.List;

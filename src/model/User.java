@@ -15,7 +15,8 @@ public class User implements Serializable {
     private String avatar;
     private boolean status;
     private Set<Role> roles = new HashSet<>();
-    private List<User> followerList;
+    Channel myChannel;
+    List<ListVideo> myPlaylist;
 
     public User() {
     }
@@ -29,7 +30,6 @@ public class User implements Serializable {
         this.avatar = avatar;
         this.status = status;
         this.roles = roles;
-        this.followerList = new ArrayList<>();
     }
 
     public User(int id, String name, String username, String email, String password, Set<Role> roles) {
@@ -39,7 +39,6 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.roles = roles;
-        this.followerList = new ArrayList<>();
     }
 
     public int getId() {
@@ -106,12 +105,12 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-    public List<User> getFollowerList() {
-        return followerList;
+    public Channel getMyChannel() {
+        return myChannel;
     }
 
-    public void setFollowerList(List<User> followerList) {
-        this.followerList = followerList;
+    public void setMyChannel(Channel myChannel) {
+        this.myChannel = myChannel;
     }
 
     @Override
@@ -120,11 +119,12 @@ public class User implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", username='" + username + '\'' +
-                ", password= " + password +
                 ", email='" + email + '\'' +
                 ", avatar='" + avatar + '\'' +
                 ", status=" + status +
                 ", roles=" + roles +
+                ", myChannel=" + myChannel +
+                ", myPlaylist=" + myPlaylist +
                 '}';
     }
 }

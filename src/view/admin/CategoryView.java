@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import config.ColorConsole;
 import config.Config;

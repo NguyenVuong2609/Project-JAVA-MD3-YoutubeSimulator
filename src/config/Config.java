@@ -13,6 +13,7 @@ public class Config<T> {
     public static final String PATH_USER = "src/database/user.txt";
     public static final String PATH_USER_LOGIN = "src/database/user_login.txt";
     public static final String PATH_CATEGORY = "src/database/category.txt";
+    public static final String PATH_VIDEO = "src/database/video.txt";
     public static final String CONTINUE_BACK_MENU = "Enter any key to continue or BACK to return Menu";
     public static final String ID_NOT_EXIST = "ID does not exist! Please try again";
     public static final String OOA_ALERT = "Out of ability!";

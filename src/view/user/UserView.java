@@ -1,4 +1,4 @@
-package view;
+package view.user;
 
 import config.ColorConsole;
 import config.Config;
@@ -9,6 +9,9 @@ import dto.response.ResponseMessage;
 import model.Role;
 import model.RoleName;
 import model.User;
+import view.Navbar;
+import view.admin.ProfileView;
+import view.admin.UserManagementView;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -93,7 +96,7 @@ public class UserView {
         System.out.println("Type BACK to return Menu: ");
         String back = Config.scanner().nextLine();
         if (back.equalsIgnoreCase("back")) {
-            new ProfileView();
+            new Navbar();
         }
     }
 
@@ -224,11 +227,10 @@ public class UserView {
                 if (roles.get(0).getName() != RoleName.ADMIN && roles.get(0).getName() != RoleName.PM) {
                     userController.deleteUserById(id);
                     System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
-                    new UserManagementView();
                 } else {
                     System.out.println(Config.OOA_ALERT);
-                    new UserManagementView();
                 }
+                new UserManagementView();
             } else {
                 System.out.println(Config.ID_NOT_EXIST);
                 new UserManagementView();
@@ -259,7 +261,7 @@ public class UserView {
                 if (user.isStatus()){
                     System.out.println("Are you sure to unblock this account? Type Y/N");
                 } else {
-                    System.out.println("Are you suer to block this account? Type Y/N");
+                    System.out.println("Are you sure to block this account? Type Y/N");
                 }
                 String choice = Config.validateString();
                 if (choice.equalsIgnoreCase("y")) {
@@ -276,20 +278,24 @@ public class UserView {
             }
         } else {
             displayUserListIgnoreAdmin();
-            System.out.println("Enter an ID that you want to block: ");
+            System.out.println("Enter an ID that you want to block/unblock: ");
             int id = Config.validateInt();
             User user = userController.findUserDetailsById(id);
             if (user != null) {
                 Set<Role> roleSetUser = user.getRoles();
                 List<Role> roles = new ArrayList<>(roleSetUser);
                 if (roles.get(0).getName() != RoleName.ADMIN && roles.get(0).getName() != RoleName.PM) {
+                    if (user.isStatus()){
+                        System.out.println("Are you sure to unblock this account? Type Y/N");
+                    } else {
+                        System.out.println("Are you sure to block this account? Type Y/N");
+                    }
                     userController.updateUser(user, 2);
                     System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
-                    new UserManagementView();
                 } else {
                     System.out.println(Config.OOA_ALERT);
-                    new UserManagementView();
                 }
+                new UserManagementView();
             } else {
                 System.out.println(Config.ID_NOT_EXIST);
                 new UserManagementView();
