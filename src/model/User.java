@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class User implements Serializable {
@@ -13,6 +15,7 @@ public class User implements Serializable {
     private String avatar;
     private boolean status;
     private Set<Role> roles = new HashSet<>();
+    private List<User> followerList;
 
     public User() {
     }
@@ -26,6 +29,7 @@ public class User implements Serializable {
         this.avatar = avatar;
         this.status = status;
         this.roles = roles;
+        this.followerList = new ArrayList<>();
     }
 
     public User(int id, String name, String username, String email, String password, Set<Role> roles) {
@@ -35,6 +39,7 @@ public class User implements Serializable {
         this.email = email;
         this.password = password;
         this.roles = roles;
+        this.followerList = new ArrayList<>();
     }
 
     public int getId() {
@@ -99,6 +104,14 @@ public class User implements Serializable {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<User> getFollowerList() {
+        return followerList;
+    }
+
+    public void setFollowerList(List<User> followerList) {
+        this.followerList = followerList;
     }
 
     @Override

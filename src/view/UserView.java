@@ -6,8 +6,11 @@ import controller.UserController;
 import dto.request.SignInDTO;
 import dto.request.SignUpDTO;
 import dto.response.ResponseMessage;
+import model.Role;
+import model.RoleName;
 import model.User;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -15,6 +18,8 @@ import java.util.Set;
 public class UserView {
     UserController userController = new UserController();
     List<User> userList = userController.getListUser();
+    List<User> currentUserList = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
+
 
     //! Đăng ký
     public void register() {
@@ -34,8 +39,7 @@ public class UserView {
         do {
             System.out.println("Enter the email: ");
             email = Config.scanner().nextLine();
-            if (!Config.validateEmail(email))
-                System.err.println(Config.FORMAT_ALERT);
+            if (!Config.validateEmail(email)) System.err.println(Config.FORMAT_ALERT);
         } while (!Config.validateEmail(email));
         do {
             System.out.println("Enter the username: ");
@@ -67,11 +71,9 @@ public class UserView {
                 do {
                     System.out.println("Enter the email: ");
                     email = Config.scanner().nextLine();
-                    if (!Config.validateEmail(email))
-                        System.err.println(Config.FORMAT_ALERT);
+                    if (!Config.validateEmail(email)) System.err.println(Config.FORMAT_ALERT);
                 } while (!Config.validateEmail(email));
                 sign.setEmail(email);
-//                sign = new SignUpDTO(id, name, username, email, password, strRole);
             } else if (responseMessage.getMessage().equals("create_success")) {
                 System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
                 try {
@@ -128,18 +130,165 @@ public class UserView {
         }
     }
 
+    //! Đăng xuất
     public void logout() {
         while (true) {
             System.out.println("Are you sure to log out? - Please type Y/N?");
             String choice = Config.validateString();
-            if (choice.equalsIgnoreCase("y")){
+            if (choice.equalsIgnoreCase("y")) {
                 userController.logout();
                 new Navbar();
                 break;
             }
-            if (choice.equalsIgnoreCase("n")){
+            if (choice.equalsIgnoreCase("n")) {
                 new ProfileView();
                 break;
+            }
+        }
+    }
+
+    //! Thay dổi role người dùng
+    public void changeUserRole() {
+        displayUserListIgnoreAdmin();
+        System.out.println("Enter an ID that you want to edit: ");
+        int id = Config.validateInt();
+        User user = userController.findUserDetailsById(id);
+        if (user != null) {
+            Set<Role> roleSet = user.getRoles();
+            List<Role> roles = new ArrayList<>(roleSet);
+            if (roles.get(0).getName() != RoleName.ADMIN) {
+                System.out.printf("User: %s - Role: %s \n", user.getName(), roles.get(0).getName());
+                while (true) {
+                    if (roles.get(0).getName() == RoleName.USER) {
+                        System.out.println("Do you want to change the role into PM? Type Y/N");
+                    } else {
+                        System.out.println("Do you want to change the role into USER? Type Y/N");
+                    }
+                    String choice = Config.validateString();
+                    if (choice.equalsIgnoreCase("y")) {
+                        userController.updateUser(user, 1);
+                        System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                        new UserManagementView();
+                        break;
+                    }
+                    if (choice.equalsIgnoreCase("n")) {
+                        new UserManagementView();
+                        break;
+                    }
+                    System.out.println(Config.OOA_ALERT);
+                }
+            } else {
+                System.out.println(Config.OOA_ALERT);
+                new UserManagementView();
+            }
+        }
+        System.out.println(Config.ID_NOT_EXIST);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new UserManagementView();
+    }
+
+    //! Xóa tài khoản
+    public void deleteUserById() {
+        Set<Role> roleSet = currentUserList.get(0).getRoles();
+        List<Role> roleList = new ArrayList<>(roleSet);
+        if (roleList.get(0).getName() == RoleName.ADMIN) {
+            displayUserListIgnoreAdmin();
+            System.out.println("Enter an ID that you want to delete: ");
+            int id = Config.validateInt();
+            User user = userController.findUserDetailsById(id);
+            if (user != null && id != 0) {
+                System.out.printf("User: %s \n", user.getName());
+                System.out.println("Are you sure to delete this account? Type Y/N");
+                String choice = Config.validateString();
+                if (choice.equalsIgnoreCase("y")) {
+                    userController.deleteUserById(id);
+                    System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                    new UserManagementView();
+                }
+            } else {
+                System.out.println(Config.OOA_ALERT);
+                new UserManagementView();
+            }
+        } else {
+            displayUserListIgnoreAdmin();
+            System.out.println("Enter an ID that you want to delete: ");
+            int id = Config.validateInt();
+            User user = userController.findUserDetailsById(id);
+            if (user != null) {
+                Set<Role> roleSetUser = user.getRoles();
+                List<Role> roles = new ArrayList<>(roleSetUser);
+                if (roles.get(0).getName() != RoleName.ADMIN && roles.get(0).getName() != RoleName.PM) {
+                    userController.deleteUserById(id);
+                    System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                    new UserManagementView();
+                } else {
+                    System.out.println(Config.OOA_ALERT);
+                    new UserManagementView();
+                }
+            } else {
+                System.out.println(Config.ID_NOT_EXIST);
+                new UserManagementView();
+            }
+        }
+    }
+
+    //! Hiển thị người dùng ngoại trừ Admin
+    public void displayUserListIgnoreAdmin() {
+        for (User user : userList) {
+            Set<Role> roleSet = user.getRoles();
+            List<Role> roles = new ArrayList<>(roleSet);
+            if (roles.get(0).getName() == RoleName.PM || roles.get(0).getName() == RoleName.USER)
+                System.out.printf("ID: %d - Name: %s - %s - Status: %b \n", user.getId(), user.getName(), user.getRoles(), user.isStatus());
+        }
+    }
+
+    //! Block user
+    public void blockUser() {
+        Set<Role> roleSet = currentUserList.get(0).getRoles();
+        List<Role> roleList = new ArrayList<>(roleSet);
+        if (roleList.get(0).getName() == RoleName.ADMIN) {
+            displayUserListIgnoreAdmin();
+            System.out.println("Enter an ID that you want to block: ");
+            int id = Config.validateInt();
+            User user = userController.findUserDetailsById(id);
+            if (user != null) {
+                System.out.println("Are you sure to block this account? Type Y/N");
+                String choice = Config.validateString();
+                if (choice.equalsIgnoreCase("y")){
+                    userController.updateUser(user,2);
+                    System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                    new UserManagementView();
+                }
+                if (choice.equalsIgnoreCase("n")){
+                    new UserManagementView();
+                }
+            } else {
+                System.out.println(Config.ID_NOT_EXIST);
+                new UserManagementView();
+            }
+        } else {
+            displayUserListIgnoreAdmin();
+            System.out.println("Enter an ID that you want to block: ");
+            int id = Config.validateInt();
+            User user = userController.findUserDetailsById(id);
+            if (user != null) {
+                Set<Role> roleSetUser = user.getRoles();
+                List<Role> roles = new ArrayList<>(roleSetUser);
+                if (roles.get(0).getName() != RoleName.ADMIN && roles.get(0).getName() != RoleName.PM) {
+                    userController.updateUser(user,2);
+                    System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                    new UserManagementView();
+                } else {
+                    System.out.println(Config.OOA_ALERT);
+                    new UserManagementView();
+                }
+            } else {
+                System.out.println(Config.ID_NOT_EXIST);
+                new UserManagementView();
             }
         }
     }

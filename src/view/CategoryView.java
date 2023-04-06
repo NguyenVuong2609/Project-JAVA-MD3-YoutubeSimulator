@@ -13,35 +13,39 @@ public class CategoryView {
     List<Category> categoryList = categoryController.getCategoryList();
 
     public CategoryView() {
-        System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ CATEGORY MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
-        System.out.printf("|" + "  1. %-89s" + "|\n", "Show Category List");
-        System.out.printf("|" + "  2. %-89s" + "|\n", "Create New Category");
-        System.out.printf("|" + "  3. %-89s" + "|\n", "Update Category");
-        System.out.printf("|" + "  4. %-89s" + "|\n", "Delete Category");
-        System.out.printf("|" + "  5. %-89s" + "|\n", "Category Details");
-        System.out.printf("|" + "  6. %-89s" + "|\n", "Back");
-        System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ CATEGORY MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
-        System.out.println("Please enter your choice: ");
-        int choice = Config.validateInt();
-        switch (choice) {
-            case 1:
-                showCategoryList();
-                break;
-            case 2:
-                createCategory();
-                break;
-            case 3:
-                updateCategory();
-                break;
-            case 4:
-                deleteCategory();
-                break;
-            case 5:
-                showCategoryDetails();
-                break;
-            case 6:
-                new ProfileView();
-                break;
+        while (true) {
+            System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ CATEGORY MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
+            System.out.printf("|" + "  1. %-89s" + "|\n", "Show Category List");
+            System.out.printf("|" + "  2. %-89s" + "|\n", "Create New Category");
+            System.out.printf("|" + "  3. %-89s" + "|\n", "Update Category");
+            System.out.printf("|" + "  4. %-89s" + "|\n", "Delete Category");
+            System.out.printf("|" + "  5. %-89s" + "|\n", "Category Details");
+            System.out.printf("|" + "  6. %-89s" + "|\n", "Back");
+            System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ CATEGORY MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
+            System.out.println("Please enter your choice: ");
+            int choice = Config.validateInt();
+            switch (choice) {
+                case 1:
+                    showCategoryList();
+                    break;
+                case 2:
+                    createCategory();
+                    break;
+                case 3:
+                    updateCategory();
+                    break;
+                case 4:
+                    deleteCategory();
+                    break;
+                case 5:
+                    showCategoryDetails();
+                    break;
+                case 6:
+                    new ProfileView();
+                    break;
+                default:
+                    System.out.println(Config.OOA_ALERT);
+            }
         }
     }
 
@@ -148,24 +152,25 @@ public class CategoryView {
                         flag = true;
                         break;
                     }
-                    if (choice.equalsIgnoreCase("n")){
+                    if (choice.equalsIgnoreCase("n")) {
                         flag = true;
                         break;
                     }
                 }
             }
-            if (flag){
+            if (flag) {
                 new CategoryView();
                 break;
             }
             System.out.println(Config.ID_NOT_EXIST);
         }
     }
-    public void showCategoryDetails(){
+
+    public void showCategoryDetails() {
         while (true) {
             System.out.println("Enter an ID that you want to see details: ");
             int id = Config.validateInt();
-            if (categoryController.findCategoryById(id)!= null){
+            if (categoryController.findCategoryById(id) != null) {
                 System.out.println(categoryController.findCategoryById(id));
             } else {
                 System.out.println(Config.ID_NOT_EXIST);

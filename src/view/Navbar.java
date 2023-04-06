@@ -10,8 +10,7 @@ import service.role.IRoleService;
 import service.role.RoleServiceIMPL;
 import service.user.UserServiceIMPL;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Navbar {
     UserController userController = new UserController();
@@ -30,37 +29,40 @@ public class Navbar {
             System.out.println("Welcome " + user.getName());
             new ProfileView();
         } else {
-            System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ YOUTUBE MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
-            System.out.printf("|" + "  1. %-87s" + "|\n", "Register");
-            System.out.printf("|" + "  2. %-87s" + "|\n", "Login");
-            System.out.printf("|" + "  3. %-87s" + "|\n", "Exit");
-            System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ YOUTUBE MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
-            System.out.println("Please enter your choice: ");
-            int choice = Config.validateInt();
-            switch (choice) {
-                case 0:
-                    new UserView().showListUser();
-                    break;
-                case 1:
-                    new UserView().register();
-                    break;
-                case 2:
-                    new UserView().formLogin();
-                    break;
-                case 3:
-                    System.exit(0);
+            while (true) {
+                System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ YOUTUBE MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
+                System.out.printf("|" + "  1. %-87s" + "|\n", "Register");
+                System.out.printf("|" + "  2. %-87s" + "|\n", "Login");
+                System.out.printf("|" + "  3. %-87s" + "|\n", "Exit");
+                System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ YOUTUBE MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
+                System.out.println("Please enter your choice: ");
+                int choice = Config.validateInt();
+                switch (choice) {
+                    case 0:
+                        new UserView().showListUser();
+                        break;
+                    case 1:
+                        new UserView().register();
+                        break;
+                    case 2:
+                        new UserView().formLogin();
+                        break;
+                    case 3:
+                        System.exit(0);
+                    default:
+                        System.out.println(Config.OOA_ALERT);
+                }
             }
         }
     }
 
     public static void main(String[] args) {
-//        IRoleService roleService = new RoleServiceIMPL();
         new Navbar();
 //        String data = Config.scanner().nextLine();
 //        System.out.println(Config.validateUsername(data));
-//        Set<Role> roleSet = new HashSet<>();
-//        roleSet.add(roleService.findByName(RoleName.PM));
-//        User user = new User(1,"PM", "pm", "pm@gmail.com" , "pm" ,"", false, roleSet);
-//        new UserServiceIMPL().save(user);
+//        List<User> userList = new Config<User>().readFromFile(Config.PATH_USER);
+//        Set<Role> setRoles = userList.get(1).getRoles();
+//        List<Role> listRoles = new ArrayList<>(setRoles);
+//        System.out.println(listRoles.get(0).getName());
     }
 }
