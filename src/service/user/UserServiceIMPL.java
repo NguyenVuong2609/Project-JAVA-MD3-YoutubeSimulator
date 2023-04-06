@@ -65,7 +65,7 @@ public class UserServiceIMPL implements IUserService {
     public boolean checkLogin(String username, String password) {
         List<User> userLogin = new ArrayList<>();
         for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUsername().equals(username) && userList.get(i).getPassword().equals(password)) {
+            if (userList.get(i).getUsername().equals(username) && userList.get(i).getPassword().equals(password) && !userList.get(i).isStatus()) {
                 userLogin.add(userList.get(i));
                 new Config<User>().writeToFile(Config.PATH_USER_LOGIN, userLogin);
                 return true;

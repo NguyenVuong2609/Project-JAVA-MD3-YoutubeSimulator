@@ -54,8 +54,8 @@ public class UserController {
         userService.logout();
     }
 
-    public void updateUser(User user, int status) {
-        if (status == 1){
+    public void updateUser(User user, int method) {
+        if (method == 1){
             Set<Role> roleSet = user.getRoles();
             List<Role> roleList = new ArrayList<>(roleSet);
             if (roleList.get(0).getName() == RoleName.USER){
@@ -70,7 +70,7 @@ public class UserController {
                 userService.save(user);
             }
         }
-        if (status == 2){
+        if (method == 2){
             user.setStatus(!user.isStatus());
             userService.save(user);
         }

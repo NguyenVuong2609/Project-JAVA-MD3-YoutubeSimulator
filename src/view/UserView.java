@@ -99,7 +99,7 @@ public class UserView {
 
     //! Đăng nhập
     public void formLogin() {
-        int count = 0;
+        int count = 1;
         System.out.println("Login Form");
         System.out.println("Enter your username: ");
         String username = Config.scanner().nextLine();
@@ -252,18 +252,22 @@ public class UserView {
         List<Role> roleList = new ArrayList<>(roleSet);
         if (roleList.get(0).getName() == RoleName.ADMIN) {
             displayUserListIgnoreAdmin();
-            System.out.println("Enter an ID that you want to block: ");
+            System.out.println("Enter an ID that you want to block/unblock: ");
             int id = Config.validateInt();
             User user = userController.findUserDetailsById(id);
             if (user != null) {
-                System.out.println("Are you sure to block this account? Type Y/N");
+                if (user.isStatus()){
+                    System.out.println("Are you sure to unblock this account? Type Y/N");
+                } else {
+                    System.out.println("Are you suer to block this account? Type Y/N");
+                }
                 String choice = Config.validateString();
-                if (choice.equalsIgnoreCase("y")){
-                    userController.updateUser(user,2);
+                if (choice.equalsIgnoreCase("y")) {
+                    userController.updateUser(user, 2);
                     System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
                     new UserManagementView();
                 }
-                if (choice.equalsIgnoreCase("n")){
+                if (choice.equalsIgnoreCase("n")) {
                     new UserManagementView();
                 }
             } else {
@@ -279,7 +283,7 @@ public class UserView {
                 Set<Role> roleSetUser = user.getRoles();
                 List<Role> roles = new ArrayList<>(roleSetUser);
                 if (roles.get(0).getName() != RoleName.ADMIN && roles.get(0).getName() != RoleName.PM) {
-                    userController.updateUser(user,2);
+                    userController.updateUser(user, 2);
                     System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
                     new UserManagementView();
                 } else {
