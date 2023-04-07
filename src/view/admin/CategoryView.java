@@ -41,7 +41,7 @@ public class CategoryView {
                     showCategoryDetails();
                     break;
                 case 6:
-                    new ProfileView();
+                    ProfileView.getProfileViewInstance();
                     break;
                 default:
                     System.out.println(Config.OOA_ALERT);

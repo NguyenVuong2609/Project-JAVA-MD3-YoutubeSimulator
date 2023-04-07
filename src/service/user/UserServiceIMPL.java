@@ -9,6 +9,7 @@ import java.util.List;
 
 public class UserServiceIMPL implements IUserService {
     List<User> userList = new Config<User>().readFromFile(Config.PATH_USER);
+    List<User> userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
 
     @Override
     public List<User> findAll() {
@@ -94,5 +95,11 @@ public class UserServiceIMPL implements IUserService {
         } catch (IOException i) {
             System.err.println("IOE exception!");
         }
+    }
+
+    @Override
+    public void updateUserLogin(User user) {
+        userLogin.set(0,user);
+        new Config<User>().writeToFile(Config.PATH_USER_LOGIN, userLogin);
     }
 }

@@ -14,9 +14,11 @@ public class Config<T> {
     public static final String PATH_USER_LOGIN = "src/database/user_login.txt";
     public static final String PATH_CATEGORY = "src/database/category.txt";
     public static final String PATH_VIDEO = "src/database/video.txt";
+    public static final String PATH_CHANNEL = "src/database/channel.txt";
     public static final String CONTINUE_BACK_MENU = "Enter any key to continue or BACK to return Menu";
     public static final String ID_NOT_EXIST = "ID does not exist! Please try again";
     public static final String OOA_ALERT = "Out of ability!";
+    public static final String CNE_ALERT = "You didn't create a channel!";
 
     public static Scanner scanner() {
         Scanner sc = new Scanner(System.in);
@@ -76,6 +78,14 @@ public class Config<T> {
     public static boolean validateUsername(String data) {
         final String USERNAME_REGEX = "^\\S{1,30}";
         return Pattern.matches(USERNAME_REGEX, data);
+    }
+    //! Thời gian nghỉ
+    public static void breakTime(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //! Đọc file

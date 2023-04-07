@@ -54,7 +54,7 @@ public class UserView {
             System.out.println("Enter the password: ");
             password = Config.scanner().nextLine();
             if (!Config.validatePassword(password))
-                System.err.println(Config.FORMAT_ALERT + "password must include at least: 1 special symbol, 1 upper word, 1 lower word");
+                System.err.println(Config.FORMAT_ALERT + "password must include at least: 1 special symbol, 1 upper word, 1 lower word and 1 number");
         } while (!Config.validatePassword(password));
         Set<String> strRole = new HashSet<>();
         SignUpDTO sign = new SignUpDTO(id, name, username, email, password, strRole);

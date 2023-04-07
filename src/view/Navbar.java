@@ -21,7 +21,7 @@ public class Navbar {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println("Welcome " + user.getName());
+            System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Welcome " + user.getName() + ColorConsole.RESET);
             new ProfileView();
         } else {
             while (true) {
@@ -43,6 +43,8 @@ public class Navbar {
                         new UserView().formLogin();
                         break;
                     case 3:
+                        System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "See you again!!!" + ColorConsole.RESET);
+                        Config.breakTime();
                         System.exit(0);
                     default:
                         System.out.println(Config.OOA_ALERT);

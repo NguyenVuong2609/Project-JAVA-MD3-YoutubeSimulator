@@ -9,4 +9,5 @@ public interface IUserService extends IGenericService<User> {
     boolean checkLogin(String username, String password);
     User getCurentUser();
     void logout();
+    void updateUserLogin(User user);
 }

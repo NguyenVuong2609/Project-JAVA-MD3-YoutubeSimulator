@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Video {
+public class Video implements Serializable {
     private int id;
     private String videoName;
     User owner;

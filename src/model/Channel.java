@@ -1,32 +1,36 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Channel {
+public class Channel implements Serializable {
     private int id;
     private String name;
     List<Video> videoList;
     boolean earnMoneyStatus;
     List<User> followerList;
+    User owner;
 
     public Channel() {
     }
 
-    public Channel(int id, String name) {
+    public Channel(int id, String name, User owner) {
         this.id = id;
         this.name = name;
         this.videoList = new ArrayList<>();
         this.earnMoneyStatus = false;
         this.followerList = new ArrayList<>();
+        this.owner = owner;
     }
 
-    public Channel(int id, String name, List<Video> videoList, boolean earnMoneyStatus, List<User> followerList) {
+    public Channel(int id, String name, List<Video> videoList, boolean earnMoneyStatus, List<User> followerList, User owner) {
         this.id = id;
         this.name = name;
         this.videoList = videoList;
         this.earnMoneyStatus = earnMoneyStatus;
         this.followerList = followerList;
+        this.owner = owner;
     }
 
     public int getId() {
@@ -67,6 +71,14 @@ public class Channel {
 
     public void setFollowerList(List<User> followerList) {
         this.followerList = followerList;
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 
     @Override

@@ -41,7 +41,7 @@ public class UserManagementView {
                             new UserView().deleteUserById();
                             break;
                         case 4:
-                            new ProfileView();
+                            ProfileView.getProfileViewInstance();
                             break;
                         default:
                             System.out.println(Config.OOA_ALERT);

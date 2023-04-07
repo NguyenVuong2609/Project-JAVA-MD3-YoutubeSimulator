@@ -55,23 +55,26 @@ public class UserController {
     }
 
     public void updateUser(User user, int method) {
-        //! Method để phân biệt change role(1) và block user(2)
-        if (method == 1){
+        //! Method để phân biệt cập nhật thông tin(0), change role(1) và block user(2)
+        if (method == 0) {
+            userService.save(user);
+        }
+        if (method == 1) {
             Set<Role> roleSet = user.getRoles();
             List<Role> roleList = new ArrayList<>(roleSet);
-            if (roleList.get(0).getName() == RoleName.USER){
+            if (roleList.get(0).getName() == RoleName.USER) {
                 Set<Role> newRoleSet = new HashSet<>();
                 newRoleSet.add(roleService.findByName(RoleName.PM));
                 user.setRoles(newRoleSet);
                 userService.save(user);
-            } else if (roleList.get(0).getName() == RoleName.PM){
+            } else if (roleList.get(0).getName() == RoleName.PM) {
                 Set<Role> newRoleSet = new HashSet<>();
                 newRoleSet.add(roleService.findByName(RoleName.USER));
                 user.setRoles(newRoleSet);
                 userService.save(user);
             }
         }
-        if (method == 2){
+        if (method == 2) {
             user.setStatus(!user.isStatus());
             userService.save(user);
         }
@@ -80,7 +83,11 @@ public class UserController {
     public User findUserDetailsById(int id) {
         return userService.findById(id);
     }
-    public void deleteUserById(int id){
+
+    public void deleteUserById(int id) {
         userService.deleteById(id);
+    }
+    public void updateUserLogin(User user){
+        userService.updateUserLogin(user);
     }
 }
