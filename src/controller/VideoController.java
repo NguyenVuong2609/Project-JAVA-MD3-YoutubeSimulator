@@ -15,6 +15,9 @@ public class VideoController {
     public void createVideo(Video video){
         videoService.save(video);
     }
+    public void updateVideo(Video video){
+        videoService.save(video);
+    }
     public Video findVideoById(int id){
         return videoService.findById(id);
     }

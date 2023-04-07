@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controller/ChannelController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/model/Comment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/channel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/channel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Channel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ListVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ListVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/channel/ChannelServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/channel/ChannelServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/channel/IChannelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/channel/IChannelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/user/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/user/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/user/UserServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/user/UserServiceIMPL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/CategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/ProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/MyChannelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/user/VideoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/VideoView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +107,8 @@
       <workItem from="1680700499021" duration="6899000" />
       <workItem from="1680741882690" duration="26109000" />
       <workItem from="1680776967173" duration="43000" />
-      <workItem from="1680829756501" duration="13717000" />
+      <workItem from="1680829756501" duration="25416000" />
+      <workItem from="1680882109030" duration="6001000" />
     </task>
     <servers />
   </component>

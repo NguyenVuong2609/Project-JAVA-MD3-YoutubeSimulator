@@ -7,15 +7,17 @@ import java.util.List;
 public class Video implements Serializable {
     private int id;
     private String videoName;
-    User owner;
-    Category category;
+    private User owner;
+    private Category category;
     private List<User> likeList;
     private int views;
     private int durations;
+    private List<Comment> commentList;
+
     public Video() {
     }
 
-    public Video(int id, String videoName, User owner, Category category, List<User> likeList, int views, int durations) {
+    public Video(int id, String videoName, User owner, Category category, List<User> likeList, int views, int durations, List<Comment> commentList) {
         this.id = id;
         this.videoName = videoName;
         this.owner = owner;
@@ -23,6 +25,7 @@ public class Video implements Serializable {
         this.likeList = likeList;
         this.views = views;
         this.durations = durations;
+        this.commentList = commentList;
     }
 
     public Video(int id, String videoName, User owner, Category category, int durations) {
@@ -33,6 +36,7 @@ public class Video implements Serializable {
         this.durations = durations;
         this.views = 0;
         this.likeList = new ArrayList<>();
+        this.commentList = new ArrayList<>();
     }
 
     public int getId() {
@@ -91,6 +95,14 @@ public class Video implements Serializable {
         this.durations = durations;
     }
 
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -98,7 +110,7 @@ public class Video implements Serializable {
                 ", videoName='" + videoName + '\'' +
                 ", owner=" + owner +
                 ", category=" + category +
-                ", likeList=" + likeList +
+                ", likes=" + likeList.size() +
                 ", views=" + views +
                 ", durations=" + durations +
                 '}';

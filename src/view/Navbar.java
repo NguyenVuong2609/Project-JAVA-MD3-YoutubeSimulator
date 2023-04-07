@@ -34,13 +34,13 @@ public class Navbar {
                 int choice = Config.validateInt();
                 switch (choice) {
                     case 0:
-                        new UserView().showListUser();
+                        UserView.getUserViewInstance().showListUser();
                         break;
                     case 1:
-                        new UserView().register();
+                        UserView.getUserViewInstance().register();
                         break;
                     case 2:
-                        new UserView().formLogin();
+                        UserView.getUserViewInstance().formLogin();
                         break;
                     case 3:
                         System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "See you again!!!" + ColorConsole.RESET);
@@ -55,8 +55,6 @@ public class Navbar {
 
     public static void main(String[] args) {
         new Navbar();
-//        String data = Config.scanner().nextLine();
-//        System.out.println(Config.validateUsername(data));
 //        List<User> userList = new Config<User>().readFromFile(Config.PATH_USER);
 //        Set<Role> setRoles = userList.get(1).getRoles();
 //        List<Role> listRoles = new ArrayList<>(setRoles);

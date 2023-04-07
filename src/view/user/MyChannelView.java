@@ -6,11 +6,8 @@ import controller.ChannelController;
 import controller.UserController;
 import model.Channel;
 import model.User;
-import model.Video;
-import view.Navbar;
-import view.admin.CategoryView;
 import view.admin.ProfileView;
-import view.admin.UserManagementView;
+
 
 import java.util.List;
 
@@ -31,12 +28,14 @@ public class MyChannelView {
         System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ MY CHANNEL ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
         System.out.printf("|" + "  1. %-85s" + "|\n", "Create My Channel");
         System.out.printf("|" + "  2. %-85s" + "|\n", "Edit My Channel Name");
-        System.out.printf("|" + "  3. %-85s" + "|\n", "Upload A Video");
-        System.out.printf("|" + "  4. %-85s" + "|\n", "Edit Video");
-        System.out.printf("|" + "  5. %-85s" + "|\n", "Delete My Video");
-        System.out.printf("|" + "  6. %-85s" + "|\n", "Delete My Channel");
-        System.out.printf("|" + "  7. %-85s" + "|\n", "Show My Channel Info");
-        System.out.printf("|" + "  8. %-85s" + "|\n", "Back");
+        System.out.printf("|" + "  3. %-85s" + "|\n", "Show My Video");
+        System.out.printf("|" + "  4. %-85s" + "|\n", "Upload A Video");
+        System.out.printf("|" + "  5. %-85s" + "|\n", "Edit My Video");
+        System.out.printf("|" + "  6. %-85s" + "|\n", "Delete My Video");
+        System.out.printf("|" + "  7. %-85s" + "|\n", "Delete My Channel");
+        System.out.printf("|" + "  8. %-85s" + "|\n", "Show My Channel Info");
+        System.out.printf("|" + "  9. %-85s" + "|\n", "Show My Playlist");
+        System.out.printf("|" + "  10. %-84s" + "|\n", "Back");
         System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ MY CHANNEL ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
         System.out.println("Please enter your choice: ");
         int choice = Config.validateInt();
@@ -48,17 +47,24 @@ public class MyChannelView {
                 updateChannelName();
                 break;
             case 3:
-                new VideoView().createVideo();
+                VideoView.getVideoViewInstance().showAllMyVideo();
                 break;
             case 4:
+                VideoView.getVideoViewInstance().createVideo();
+                break;
+            case 5:
+                VideoView.getVideoViewInstance().editMyVideo();
                 break;
             case 6:
-                deleteMyChannel();
+                VideoView.getVideoViewInstance().deleteVideo();
                 break;
             case 7:
-                showMyChannelInfo();
+                deleteMyChannel();
                 break;
             case 8:
+                showMyChannelInfo();
+                break;
+            case 9:
                 ProfileView.getProfileViewInstance();
                 break;
             default:

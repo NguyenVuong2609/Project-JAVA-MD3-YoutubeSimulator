@@ -19,6 +19,12 @@ import java.util.List;
 import java.util.Set;
 
 public class UserView {
+    public static UserView UserViewInstance;
+    public static UserView getUserViewInstance(){
+        if (UserViewInstance == null)
+            UserViewInstance = new UserView();
+        return UserViewInstance;
+    }
     UserController userController = new UserController();
     List<User> userList = userController.getListUser();
     List<User> currentUserList = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
