@@ -65,6 +65,9 @@ public class MyChannelView {
                 showMyChannelInfo();
                 break;
             case 9:
+                PlayListView.getPlayListViewInstance().showMyPlayLists();
+                break;
+            case 10:
                 ProfileView.getProfileViewInstance();
                 break;
             default:

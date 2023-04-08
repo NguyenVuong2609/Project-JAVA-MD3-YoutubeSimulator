@@ -2,10 +2,13 @@ package view;
 
 import config.ColorConsole;
 import config.Config;
+import config.YoutubeFrame;
 import controller.UserController;
 import model.User;
+import model.Video;
 import view.admin.ProfileView;
 import view.user.UserView;
+
 
 public class Navbar {
     UserController userController = new UserController();

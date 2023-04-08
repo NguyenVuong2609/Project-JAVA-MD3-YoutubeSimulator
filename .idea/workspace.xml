@@ -5,18 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/model/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/config/YoutubeFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controller/PlayListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/database/listvideo.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/playlist/IPlayListService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/service/playlist/PlayListServiceIMPL.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/user/PlayListView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/user/YoutubeView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/VideoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/MyChannelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/VideoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/VideoView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +107,8 @@
       <workItem from="1680741882690" duration="26109000" />
       <workItem from="1680776967173" duration="43000" />
       <workItem from="1680829756501" duration="25416000" />
-      <workItem from="1680882109030" duration="6001000" />
+      <workItem from="1680882109030" duration="7101000" />
+      <workItem from="1680962231887" duration="8476000" />
     </task>
     <servers />
   </component>

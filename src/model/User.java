@@ -113,6 +113,14 @@ public class User implements Serializable {
         this.myChannel = myChannel;
     }
 
+    public List<ListVideo> getMyPlaylist() {
+        return myPlaylist;
+    }
+
+    public void setMyPlaylist(List<ListVideo> myPlaylist) {
+        this.myPlaylist = myPlaylist;
+    }
+
     @Override
     public String toString() {
         return "User{" +

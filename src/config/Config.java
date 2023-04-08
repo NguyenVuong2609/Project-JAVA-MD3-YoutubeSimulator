@@ -15,6 +15,7 @@ public class Config<T> {
     public static final String PATH_CATEGORY = "src/database/category.txt";
     public static final String PATH_VIDEO = "src/database/video.txt";
     public static final String PATH_CHANNEL = "src/database/channel.txt";
+    public static final String PATH_PLAYLIST = "src/database/listvideo.txt";
     public static final String CONTINUE_BACK_MENU = ColorConsole.GREEN_BRIGHT + "Enter any key to continue or BACK to return Menu" + ColorConsole.RESET;
     public static final String ID_NOT_EXIST = ColorConsole.RED_BOLD + "ID does not exist! Please try again" + ColorConsole.RESET;
     public static final String OOA_ALERT = ColorConsole.RED_BOLD + "Out of ability!" + ColorConsole.RESET;
