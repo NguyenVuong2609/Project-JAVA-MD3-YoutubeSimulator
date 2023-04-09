@@ -9,6 +9,8 @@ import model.Video;
 import view.admin.ProfileView;
 import view.user.UserView;
 
+import java.util.List;
+
 
 public class Navbar {
     UserController userController = new UserController();
@@ -62,5 +64,7 @@ public class Navbar {
 //        Set<Role> setRoles = userList.get(1).getRoles();
 //        List<Role> listRoles = new ArrayList<>(setRoles);
 //        System.out.println(listRoles.get(0).getName());
+//        List<User> users = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
+//        YoutubeFrame.getYoutubeViewInstance().progressBar(users.get(0).getMyChannel().getVideoList().get(0));
     }
 }

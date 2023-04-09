@@ -51,4 +51,13 @@ public class ChannelServiceIMPL implements IChannelService {
         }
         return null;
     }
+
+    @Override
+    public User findChannelFollower(User user, Channel channel) {
+        for (User u : channel.getFollowerList()) {
+            if (u.getId() == u.getId())
+                return u;
+        }
+        return null;
+    }
 }

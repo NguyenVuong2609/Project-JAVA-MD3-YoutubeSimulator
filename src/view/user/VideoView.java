@@ -2,6 +2,7 @@ package view.user;
 
 import config.ColorConsole;
 import config.Config;
+import config.YoutubeFrame;
 import controller.CategoryController;
 import controller.ChannelController;
 import controller.UserController;
@@ -11,20 +12,20 @@ import model.Channel;
 import model.User;
 import model.Video;
 
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class VideoView {
     public static VideoView videoViewInstance;
-    public static VideoView getVideoViewInstance(){
+
+    public static VideoView getVideoViewInstance() {
         if (videoViewInstance == null)
             videoViewInstance = new VideoView();
         return videoViewInstance;
     }
-    VideoController videoController = new VideoController();
+
+    VideoController videoController = VideoController.getVideoControllerInstance();
     ChannelController channelController = new ChannelController();
-    UserController userController = new UserController();
+    UserController userController = UserController.getUserControllerInstance();
     CategoryController categoryController = new CategoryController();
     List<Video> videoList = videoController.getVideoList();
     List<User> userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
@@ -88,8 +89,12 @@ public class VideoView {
         User user = userLogin.get(0);
         if (user.getMyChannel() != null) {
             List<Video> myVideoList = user.getMyChannel().getVideoList();
-            for (int i = 0; i < myVideoList.size(); i++) {
-                System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + (i + 1) + ". " + myVideoList.get(i).getVideoName() + " - Views: " + myVideoList.get(i).getViews() + " - Durations: " + (myVideoList.get(i).getDurations() / 60) + " min " + (myVideoList.get(i).getDurations() % 60) + " sec" + ColorConsole.RESET);
+            if (myVideoList.size() > 0) {
+                for (int i = 0; i < myVideoList.size(); i++) {
+                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + (i + 1) + ". " + myVideoList.get(i).getVideoName() + " - Views: " + myVideoList.get(i).getViews() + " - Durations: " + (myVideoList.get(i).getDurations() / 60) + " min " + (myVideoList.get(i).getDurations() % 60) + " sec" + ColorConsole.RESET);
+                }
+            } else {
+                System.err.println("You don't have any videos!");
             }
         }
         while (true) {
@@ -215,5 +220,92 @@ public class VideoView {
             Config.breakTime();
             MyChannelView.getMyChannelViewInstance();
         }
+    }
+
+    //! Hiển thị danh sách tìm kiếm video theo tên
+    public void showSearchVideoList() {
+        System.out.println("Enter a video name that you want to view: ");
+        String searchData = Config.validateString();
+        List<Video> searchList = videoController.findListVideoByName(searchData);
+        if (searchList.size() != 0) {
+            System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Found " + searchList.size() + (searchList.size() == 1 ? " result" : " results") + ColorConsole.RESET);
+            for (int i = 0; i < searchList.size(); i++) {
+                Video video = searchList.get(i);
+                System.out.printf("%d. ID:%s - %s - Durations: %s min %s sec - Views: %d - Owner: %s \n", (i + 1), video.getId(), video.getVideoName(), video.getDurations() / 60, video.getDurations() % 60, video.getViews(), video.getOwner().getName());
+            }
+            int index;
+            while (true) {
+                System.out.println("Enter a video's index that you want to view: ");
+                index = Config.validateInt();
+                if (index > 0 && index <= searchList.size())
+                    break;
+                System.out.println(Config.OOA_ALERT);
+            }
+            YoutubeFrame.getYoutubeViewInstance().showVideoFrame(searchList.get(index - 1));
+            YoutubeFrame.getYoutubeViewInstance().actionMenu(searchList.get(index - 1));
+        } else {
+            System.err.println("No result!");
+            Config.breakTime();
+            YoutubeView.getYoutubeViewInstance();
+        }
+    }
+
+    public User findUserLikedVideo(User user, Video video) {
+        return videoController.findUserLikedVideo(user, video);
+    }
+
+    //! Tìm kiếm người theo dõi
+    public User findChannelFollower(User user, Channel channel) {
+        return channelController.findChannelFollower(user, channel);
+    }
+
+    //! Like video
+    public void likeVideo(Video video) {
+        List<User> likedUserList = video.getLikeList();
+        User user = userLogin.get(0);
+        Channel channel = user.getMyChannel();
+        List<Video> listVideo = channel.getVideoList();
+        User check = findUserLikedVideo(userLogin.get(0), video);
+        if (check == null) {
+            likedUserList.add(user);
+        } else {
+            likedUserList.remove(user);
+        }
+        video.setLikeList(likedUserList);
+        for (int i = 0; i < listVideo.size(); i++) {
+            if (listVideo.get(i).getId() == video.getId()) {
+                listVideo.set(i, video);
+                break;
+            }
+        }
+        channel.setVideoList(listVideo);
+        user.setMyChannel(channel);
+        videoController.updateVideo(video);
+        channelController.updateChannel(channel);
+        userController.updateUser(user, 0);
+        userController.updateUserLogin(user);
+    }
+
+    //! Tăng view
+    public void updateView(Video video) {
+        User owner = video.getOwner();
+        Channel channel = owner.getMyChannel();
+        List<Video> listVideo = channel.getVideoList();
+        int views = video.getViews();
+        views++;
+        video.setViews(views);
+        for (int i = 0; i < listVideo.size(); i++) {
+            if (listVideo.get(i).getId() == video.getId()) {
+                listVideo.set(i, video);
+                break;
+            }
+        }
+        channel.setVideoList(listVideo);
+        owner.setMyChannel(channel);
+        videoController.updateVideo(video);
+        channelController.updateChannel(channel);
+        userController.updateUser(owner,0);
+        if (owner.getId() == userLogin.get(0).getId())
+            userController.updateUserLogin(owner);
     }
 }

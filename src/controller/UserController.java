@@ -17,6 +17,12 @@ import java.util.List;
 import java.util.Set;
 
 public class UserController {
+    public static UserController userControllerInstance;
+    public static UserController getUserControllerInstance(){
+        if (userControllerInstance == null)
+            userControllerInstance = new UserController();
+        return userControllerInstance;
+    }
     private IUserService userService = new UserServiceIMPL();
     private IRoleService roleService = new RoleServiceIMPL();
 

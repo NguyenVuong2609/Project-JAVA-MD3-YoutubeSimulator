@@ -8,6 +8,7 @@ import model.RoleName;
 import model.User;
 import view.user.MyChannelView;
 import view.user.UserView;
+import view.user.YoutubeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +63,7 @@ public class ProfileView {
                 int choice = Config.validateInt();
                 switch (choice) {
                     case 1:
+                        YoutubeView.getYoutubeViewInstance();
                         break;
                     case 2:
                         MyChannelView.getMyChannelViewInstance();

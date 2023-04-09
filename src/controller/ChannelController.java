@@ -1,6 +1,7 @@
 package controller;
 
 import model.Channel;
+import model.User;
 import service.channel.ChannelServiceIMPL;
 import service.channel.IChannelService;
 
@@ -25,5 +26,8 @@ public class ChannelController {
     }
     public Channel findByName(String name){
         return channelService.findByName(name);
+    }
+    public User findChannelFollower(User user, Channel channel){
+        return channelService.findChannelFollower(user,channel);
     }
 }

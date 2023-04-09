@@ -7,7 +7,7 @@ import java.util.List;
 public class ListVideo implements Serializable {
     private int id;
     private String name;
-    List<Video> playlist;
+    List<Integer> playlist;
     User owner;
 
     public ListVideo() {
@@ -20,7 +20,7 @@ public class ListVideo implements Serializable {
         this.owner = owner;
     }
 
-    public ListVideo(int id, String name, List<Video> playlist, User owner) {
+    public ListVideo(int id, String name, List<Integer> playlist, User owner) {
         this.id = id;
         this.name = name;
         this.playlist = playlist;
@@ -43,11 +43,11 @@ public class ListVideo implements Serializable {
         this.name = name;
     }
 
-    public List<Video> getPlaylist() {
+    public List<Integer> getPlaylist() {
         return playlist;
     }
 
-    public void setPlaylist(List<Video> playlist) {
+    public void setPlaylist(List<Integer> playlist) {
         this.playlist = playlist;
     }
 

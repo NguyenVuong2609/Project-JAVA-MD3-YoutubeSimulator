@@ -20,7 +20,7 @@ public class MyChannelView {
     }
 
     ChannelController channelController = new ChannelController();
-    UserController userController = new UserController();
+    UserController userController = UserController.getUserControllerInstance();
     List<Channel> channelList = new Config<Channel>().readFromFile(Config.PATH_CHANNEL);
     List<User> userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
 
@@ -190,5 +190,6 @@ public class MyChannelView {
             getMyChannelViewInstance();
         }
     }
+
 
 }

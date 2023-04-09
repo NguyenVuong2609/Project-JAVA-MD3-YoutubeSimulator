@@ -2,12 +2,15 @@ package service.video;
 
 import config.Config;
 import model.Channel;
+import model.User;
 import model.Video;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoServiceIMPL implements IVideoService {
     List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
+
     @Override
     public List<Video> findAll() {
         return videoList;
@@ -39,5 +42,25 @@ public class VideoServiceIMPL implements IVideoService {
         int index = videoList.indexOf(findById(id));
         videoList.remove(index);
         new Config<Video>().writeToFile(Config.PATH_VIDEO, videoList);
+    }
+
+    @Override
+    public List<Video> findByName(String name) {
+        List<Video> searchList = new ArrayList<>();
+        for (int i = 0; i < videoList.size(); i++) {
+            if (videoList.get(i).getVideoName().toLowerCase().contains(name.toLowerCase())) {
+                searchList.add(videoList.get(i));
+            }
+        }
+        return searchList;
+    }
+
+    @Override
+    public User findUserLikedVideo(User user, Video video) {
+        for (User u : video.getLikeList()) {
+            if (u.getId() == user.getId())
+                return u;
+        }
+        return null;
     }
 }
