@@ -1,15 +1,19 @@
 package service.video;
 
 import config.Config;
+import config.VideoComparator;
 import model.Channel;
+import model.ListVideo;
 import model.User;
 import model.Video;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class VideoServiceIMPL implements IVideoService {
     List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
+    VideoComparator videoComparator = VideoComparator.getVideoComparatorInstance();
 
     @Override
     public List<Video> findAll() {
@@ -63,4 +67,12 @@ public class VideoServiceIMPL implements IVideoService {
         }
         return null;
     }
+
+    @Override
+    public List<Video> sortVideosByView() {
+        List<Video> sortList = new ArrayList<>(videoList);
+        sortList.sort(videoComparator);
+        return sortList;
+    }
+
 }

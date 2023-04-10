@@ -37,4 +37,7 @@ public class VideoController {
     public User findUserLikedVideo(User user, Video video){
         return videoService.findUserLikedVideo(user,video);
     }
+    public List<Video> sortVideoByView(){
+        return videoService.sortVideosByView();
+    }
 }

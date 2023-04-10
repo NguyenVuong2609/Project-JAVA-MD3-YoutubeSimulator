@@ -18,14 +18,14 @@ public class Navbar {
     public Navbar() {
         User user = userController.getUserLogin();
         if (user != null) {
-            try {
-                for (int i = 3; i > 0; i--) {
-                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
-                    Thread.sleep(1000);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                for (int i = 3; i > 0; i--) {
+//                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
+//                    Thread.sleep(1000);
+//                }
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Welcome " + user.getName() + ColorConsole.RESET);
             new ProfileView();
         } else {

@@ -2,11 +2,15 @@ package service.category;
 
 import config.Config;
 import model.Category;
+import model.Video;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryServiceIMPL implements ICategoryService{
+public class CategoryServiceIMPL implements ICategoryService {
     List<Category> categoryList = new Config<Category>().readFromFile(Config.PATH_CATEGORY);
+    List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
+
     @Override
     public List<Category> findAll() {
         return categoryList;
@@ -14,10 +18,10 @@ public class CategoryServiceIMPL implements ICategoryService{
 
     @Override
     public void save(Category category) {
-        if(findById(category.getId())==null){
+        if (findById(category.getId()) == null) {
             categoryList.add(category);
         } else {
-            categoryList.set(categoryList.indexOf(findById(category.getId())),category);
+            categoryList.set(categoryList.indexOf(findById(category.getId())), category);
         }
         new Config<Category>().writeToFile(Config.PATH_CATEGORY, categoryList);
     }
@@ -25,7 +29,7 @@ public class CategoryServiceIMPL implements ICategoryService{
     @Override
     public Category findById(int id) {
         for (int i = 0; i < categoryList.size(); i++) {
-            if(categoryList.get(i).getId()==id){
+            if (categoryList.get(i).getId() == id) {
                 return categoryList.get(i);
             }
         }
@@ -42,9 +46,18 @@ public class CategoryServiceIMPL implements ICategoryService{
     @Override
     public boolean existByName(String name) {
         for (int i = 0; i < categoryList.size(); i++) {
-            if (categoryList.get(i).getName().equalsIgnoreCase(name))
-                return true;
+            if (categoryList.get(i).getName().equalsIgnoreCase(name)) return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Video> showListVideoByName(String name) {
+        List<Video> searchList = new ArrayList<>();
+        for (Video video : videoList) {
+            if (video.getCategory().getName().equalsIgnoreCase(name))
+                searchList.add(video);
+        }
+        return searchList;
     }
 }

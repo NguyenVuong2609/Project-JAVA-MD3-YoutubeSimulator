@@ -3,10 +3,12 @@ package service.playlist;
 import config.Config;
 import model.ListVideo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PlayListServiceIMPL implements IPlayListService {
     List<ListVideo> listVideos = new Config<ListVideo>().readFromFile(Config.PATH_PLAYLIST);
+
     @Override
     public List<ListVideo> findAll() {
         return listVideos;
@@ -49,4 +51,15 @@ public class PlayListServiceIMPL implements IPlayListService {
         }
         return null;
     }
+
+    @Override
+    public List<ListVideo> findListOfPlayListByName(String name) {
+        List<ListVideo> searchListVideo = new ArrayList<>();
+        for (ListVideo list : listVideos) {
+            if (list.getName().equalsIgnoreCase(name))
+                searchListVideo.add(list);
+        }
+        return searchListVideo;
+    }
+
 }

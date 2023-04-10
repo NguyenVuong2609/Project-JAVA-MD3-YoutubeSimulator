@@ -8,6 +8,12 @@ import service.channel.IChannelService;
 import java.util.List;
 
 public class ChannelController {
+    public static ChannelController channelControllerInstance;
+    public static ChannelController getChannelControllerInstance(){
+        if (channelControllerInstance == null)
+            channelControllerInstance = new ChannelController();
+        return channelControllerInstance;
+    }
     IChannelService channelService = new ChannelServiceIMPL();
     public List<Channel> getChannelList(){
         return channelService.findAll();

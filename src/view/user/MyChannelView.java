@@ -2,10 +2,12 @@ package view.user;
 
 import config.ColorConsole;
 import config.Config;
+import config.YoutubeFrame;
 import controller.ChannelController;
 import controller.UserController;
 import model.Channel;
 import model.User;
+import model.Video;
 import view.admin.ProfileView;
 
 
@@ -19,7 +21,7 @@ public class MyChannelView {
         return MyChannelViewInstance;
     }
 
-    ChannelController channelController = new ChannelController();
+    ChannelController channelController = ChannelController.getChannelControllerInstance();
     UserController userController = UserController.getUserControllerInstance();
     List<Channel> channelList = new Config<Channel>().readFromFile(Config.PATH_CHANNEL);
     List<User> userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
@@ -190,6 +192,4 @@ public class MyChannelView {
             getMyChannelViewInstance();
         }
     }
-
-
 }

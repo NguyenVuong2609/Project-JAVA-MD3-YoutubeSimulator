@@ -12,6 +12,7 @@ import model.Channel;
 import model.User;
 import model.Video;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoView {
@@ -228,21 +229,7 @@ public class VideoView {
         String searchData = Config.validateString();
         List<Video> searchList = videoController.findListVideoByName(searchData);
         if (searchList.size() != 0) {
-            System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Found " + searchList.size() + (searchList.size() == 1 ? " result" : " results") + ColorConsole.RESET);
-            for (int i = 0; i < searchList.size(); i++) {
-                Video video = searchList.get(i);
-                System.out.printf("%d. ID:%s - %s - Durations: %s min %s sec - Views: %d - Owner: %s \n", (i + 1), video.getId(), video.getVideoName(), video.getDurations() / 60, video.getDurations() % 60, video.getViews(), video.getOwner().getName());
-            }
-            int index;
-            while (true) {
-                System.out.println("Enter a video's index that you want to view: ");
-                index = Config.validateInt();
-                if (index > 0 && index <= searchList.size())
-                    break;
-                System.out.println(Config.OOA_ALERT);
-            }
-            YoutubeFrame.getYoutubeViewInstance().showVideoFrame(searchList.get(index - 1));
-            YoutubeFrame.getYoutubeViewInstance().actionMenu(searchList.get(index - 1));
+            showSearchListVideoMethod(searchList);
         } else {
             System.err.println("No result!");
             Config.breakTime();
@@ -304,8 +291,72 @@ public class VideoView {
         owner.setMyChannel(channel);
         videoController.updateVideo(video);
         channelController.updateChannel(channel);
-        userController.updateUser(owner,0);
+        userController.updateUser(owner, 0);
         if (owner.getId() == userLogin.get(0).getId())
             userController.updateUserLogin(owner);
     }
+
+    //! Hiển thị danh sách video theo category
+    public void showListVideoByCategoryName() {
+        System.out.println("Enter a category's name: ");
+        String name = Config.validateString();
+        if (categoryController.existByName(name)) {
+            List<Video> videoList = categoryController.showListVideoByCategoryName(name);
+            if (videoList.size() > 0) {
+                showSearchListVideoMethod(videoList);
+            } else {
+                System.err.println("This category doesn't have any videos.");
+                Config.breakTime();
+                YoutubeView.getYoutubeViewInstance();
+            }
+        } else {
+            System.out.println("This category doesn't exist.");
+            Config.breakTime();
+            YoutubeView.getYoutubeViewInstance();
+        }
+    }
+
+    //! In ra danh sách video
+    public void showSearchListVideoMethod(List<Video> searchList) {
+        for (Video video : searchList) {
+            System.out.printf(ColorConsole.YELLOW_BOLD_BRIGHT + "ID: %s - Name: %s  - Category: %s - Views: %s - Duration: %s min %s sec - Likes: %s \n" + ColorConsole.RESET, video.getId(), video.getVideoName(), video.getCategory(), video.getViews(), video.getDurations() / 60, video.getDurations() % 60, video.getLikeList().size());
+        }
+        System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Found " + searchList.size() + (searchList.size() == 1 ? " result" : " results") + ColorConsole.RESET);
+        for (int i = 0; i < searchList.size(); i++) {
+            Video video = searchList.get(i);
+            System.out.printf("%d. ID:%s - %s - Durations: %s min %s sec - Views: %d - Owner: %s \n", (i + 1), video.getId(), video.getVideoName(), video.getDurations() / 60, video.getDurations() % 60, video.getViews(), video.getOwner().getName());
+        }
+        int index;
+        while (true) {
+            System.out.println("Enter a video's index that you want to view: ");
+            index = Config.validateInt();
+            if (index > 0 && index <= searchList.size())
+                break;
+            System.out.println(Config.OOA_ALERT);
+        }
+        YoutubeFrame.getYoutubeViewInstance().showVideoFrame(videoList.get(index - 1));
+        YoutubeFrame.getYoutubeViewInstance().actionMenu(videoList.get(index - 1));
+    }
+
+    //! Hiển thị top 5 video nhiều view nhất
+    public void showTopFiveVideosByView(){
+        System.out.println("Top 5 videos by view: ");
+        List<Video> sortList = videoController.sortVideoByView();
+        List<Video> topFiveList = new ArrayList<>();
+        if (sortList.size() > 5){
+            for (int i = 0; i < 5; i++) {
+                topFiveList.add(sortList.get(i));
+            }
+            showSearchListVideoMethod(topFiveList);
+        } else if (sortList.size() > 0){
+            showSearchListVideoMethod(sortList);
+        } else {
+            System.err.println("No result!");
+            Config.breakTime();
+            YoutubeView.getYoutubeViewInstance();
+        }
+    }
+
+    //! Thêm video vào playlist
+
 }

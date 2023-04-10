@@ -4,6 +4,7 @@ import model.Channel;
 import model.User;
 import model.Video;
 import view.user.MyChannelView;
+import view.user.PlayListView;
 import view.user.VideoView;
 import view.user.YoutubeView;
 
@@ -58,6 +59,7 @@ public class YoutubeFrame {
         int j;
         try {
             while (i <= 100) {
+                System.out.println("\\033[H\\033[2J");
                 showVideoFrame(video);
                 System.out.println();
                 j = 0;
@@ -95,6 +97,12 @@ public class YoutubeFrame {
                     break;
                 case 2:
                     VideoView.getVideoViewInstance().likeVideo(video);
+                    showVideoFrame(video);
+                    actionMenu(video);
+                    flag = false;
+                    break;
+                case 3:
+                    PlayListView.getPlayListViewInstance().addVideoToPlaylistMenu(video);
                     showVideoFrame(video);
                     actionMenu(video);
                     flag = false;

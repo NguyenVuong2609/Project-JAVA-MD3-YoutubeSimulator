@@ -2,6 +2,7 @@ package controller;
 
 import dto.response.ResponseMessage;
 import model.Category;
+import model.Video;
 import service.category.CategoryServiceIMPL;
 import service.category.ICategoryService;
 
@@ -27,5 +28,11 @@ public class CategoryController {
     }
     public void updateCategory(Category category){
         categoryService.save(category);
+    }
+    public boolean existByName(String name){
+        return categoryService.existByName(name);
+    }
+    public List<Video> showListVideoByCategoryName(String name){
+        return categoryService.showListVideoByName(name);
     }
 }

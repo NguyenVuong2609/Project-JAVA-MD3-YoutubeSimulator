@@ -17,10 +17,16 @@ public class PlayListController {
     public ListVideo findPlayListById(int id){
         return playListService.findById(id);
     }
+    public void updatePlaylist(ListVideo listVideo){
+        playListService.save(listVideo);
+    }
     public void deletePlayList(int id){
         playListService.deleteById(id);
     }
     public ListVideo findPlayListByName(String name){
         return playListService.findByName(name);
+    }
+    public List<ListVideo> findListOfPlayListByName(String name){
+        return playListService.findListOfPlayListByName(name);
     }
 }

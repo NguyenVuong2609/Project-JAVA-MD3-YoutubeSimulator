@@ -95,8 +95,12 @@ public class Config<T> {
         List<T> list = new ArrayList<>();
         try {
             File file = new File(pathFile);
+            String currentPath = file.getAbsolutePath();
             if (!file.exists()) {
-                file.createNewFile();
+                String newPath = currentPath.replace("src\\", "");
+                file = new File(newPath);
+                if (!file.exists())
+                    file.createNewFile();
             }
             FileInputStream fileInputStream = new FileInputStream(file);
             if (fileInputStream.available() != 0) {
@@ -120,7 +124,15 @@ public class Config<T> {
     //! Ghi file
     public void writeToFile(String pathFile, List<T> list) {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(pathFile);
+            File file = new File(pathFile);
+            String currentPath = file.getAbsolutePath();
+            if (!file.exists()) {
+                String newPath = currentPath.replace("src\\", "");
+                file = new File(newPath);
+                if (!file.exists())
+                    file.createNewFile();
+            }
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(list);
             fileOutputStream.close();
