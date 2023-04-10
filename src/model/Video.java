@@ -108,7 +108,7 @@ public class Video implements Serializable {
         return "Video{" +
                 "id=" + id +
                 ", videoName='" + videoName + '\'' +
-                ", owner=" + owner +
+                ", owner=" + owner.getName() +
                 ", category=" + category +
                 ", likes=" + likeList.size() +
                 ", views=" + views +

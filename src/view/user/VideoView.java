@@ -250,7 +250,7 @@ public class VideoView {
     public void likeVideo(Video video) {
         List<User> likedUserList = video.getLikeList();
         User user = userLogin.get(0);
-        Channel channel = user.getMyChannel();
+        Channel channel = video.getOwner().getMyChannel();
         List<Video> listVideo = channel.getVideoList();
         User check = findUserLikedVideo(userLogin.get(0), video);
         if (check == null) {
@@ -334,21 +334,21 @@ public class VideoView {
                 break;
             System.out.println(Config.OOA_ALERT);
         }
-        YoutubeFrame.getYoutubeViewInstance().showVideoFrame(videoList.get(index - 1));
-        YoutubeFrame.getYoutubeViewInstance().actionMenu(videoList.get(index - 1));
+        YoutubeFrame.getYoutubeViewInstance().showVideoFrame(searchList.get(index - 1));
+        YoutubeFrame.getYoutubeViewInstance().actionMenu(searchList.get(index - 1));
     }
 
     //! Hiển thị top 5 video nhiều view nhất
-    public void showTopFiveVideosByView(){
+    public void showTopFiveVideosByView() {
         System.out.println("Top 5 videos by view: ");
         List<Video> sortList = videoController.sortVideoByView();
         List<Video> topFiveList = new ArrayList<>();
-        if (sortList.size() > 5){
+        if (sortList.size() > 5) {
             for (int i = 0; i < 5; i++) {
                 topFiveList.add(sortList.get(i));
             }
             showSearchListVideoMethod(topFiveList);
-        } else if (sortList.size() > 0){
+        } else if (sortList.size() > 0) {
             showSearchListVideoMethod(sortList);
         } else {
             System.err.println("No result!");
@@ -357,6 +357,35 @@ public class VideoView {
         }
     }
 
-    //! Thêm video vào playlist
-
+    //! Follow channel
+    public void followChannel(Channel channel) {
+        User user = userLogin.get(0);
+        if (channel.getOwner().getId() != user.getId()) {
+            List<User> followerList = channel.getFollowerList();
+            User owner = channel.getOwner();
+            if (user.getMyChannel() == null) {
+                followerList.add(user);
+            } else {
+                boolean check = true;
+                for (int i = 0; i < followerList.size(); i++) {
+                    if (followerList.get(i).getId() == user.getId()) {
+                        followerList.remove(user);
+                        check = false;
+                        break;
+                    }
+                }
+                if (check) {
+                    followerList.add(user);
+                }
+            }
+            channel.setFollowerList(followerList);
+            owner.setMyChannel(channel);
+            channelController.updateChannel(channel);
+            userController.updateUser(owner, 0);
+            userController.updateUserLogin(user);
+            System.out.println(Config.SUCCESS_ALERT);
+        } else {
+            System.err.println("You can't follow your channel!");
+        }
+    }
 }

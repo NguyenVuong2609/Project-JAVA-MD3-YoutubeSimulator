@@ -3,7 +3,6 @@ package config;
 import model.Channel;
 import model.User;
 import model.Video;
-import view.user.MyChannelView;
 import view.user.PlayListView;
 import view.user.VideoView;
 import view.user.YoutubeView;
@@ -42,8 +41,14 @@ public class YoutubeFrame {
             System.out.print(" ");
         }
         System.out.print(videoName);
-        for (int i = 0; i < blank / 2; i++) {
-            System.out.print(" ");
+        if (size % 2 == 0) {
+            for (int i = 0; i < blank / 2; i++) {
+                System.out.print(" ");
+            }
+        } else {
+            for (int i = 0; i <= blank / 2; i++) {
+                System.out.print(" ");
+            }
         }
         System.out.println("|                                                                                                  |");
         System.out.println("|                                                                                                  |");
@@ -59,7 +64,6 @@ public class YoutubeFrame {
         int j;
         try {
             while (i <= 100) {
-                System.out.println("\\033[H\\033[2J");
                 showVideoFrame(video);
                 System.out.println();
                 j = 0;
@@ -103,6 +107,12 @@ public class YoutubeFrame {
                     break;
                 case 3:
                     PlayListView.getPlayListViewInstance().addVideoToPlaylistMenu(video);
+                    showVideoFrame(video);
+                    actionMenu(video);
+                    flag = false;
+                    break;
+                case 4:
+                    VideoView.getVideoViewInstance().followChannel(video.getOwner().getMyChannel());
                     showVideoFrame(video);
                     actionMenu(video);
                     flag = false;

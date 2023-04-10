@@ -2,12 +2,10 @@ package view.user;
 
 import config.ColorConsole;
 import config.Config;
-import config.YoutubeFrame;
 import controller.ChannelController;
 import controller.UserController;
 import model.Channel;
 import model.User;
-import model.Video;
 import view.admin.ProfileView;
 
 
@@ -37,7 +35,8 @@ public class MyChannelView {
         System.out.printf("|" + "  7. %-85s" + "|\n", "Delete My Channel");
         System.out.printf("|" + "  8. %-85s" + "|\n", "Show My Channel Info");
         System.out.printf("|" + "  9. %-85s" + "|\n", "Show My Playlist");
-        System.out.printf("|" + "  10. %-84s" + "|\n", "Back");
+        System.out.printf("|" + "  10. %-84s" + "|\n", "Show all follower");
+        System.out.printf("|" + "  11. %-84s" + "|\n", "Back");
         System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ MY CHANNEL ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
         System.out.println("Please enter your choice: ");
         int choice = Config.validateInt();
@@ -70,6 +69,9 @@ public class MyChannelView {
                 PlayListView.getPlayListViewInstance().showMyPlayLists();
                 break;
             case 10:
+                showMyListFollower();
+                break;
+            case 11:
                 ProfileView.getProfileViewInstance();
                 break;
             default:
@@ -171,6 +173,16 @@ public class MyChannelView {
     public void showMyChannelInfo() {
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
+            if (!myChannel.isEarnMoneyStatus()){
+                System.out.println(channelController.calTotalAllVideosView(myChannel));
+                if (myChannel.getFollowerList().size() > 2 && channelController.calTotalAllVideosView(myChannel) > 10) {
+                    myChannel.setEarnMoneyStatus(true);
+                    userLogin.get(0).setMyChannel(myChannel);
+                    channelController.updateChannel(myChannel);
+                    userController.updateUserLogin(userLogin.get(0));
+                    userController.updateUser(userLogin.get(0),0);
+                }
+            }
             while (true) {
                 System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "---------------------------- My Channel ----------------------------");
                 System.out.printf("|" + "  1. %-61s" + "|\n", "Name: " + myChannel.getName());
@@ -190,6 +202,22 @@ public class MyChannelView {
             System.err.println(Config.CNE_ALERT);
             Config.breakTime();
             getMyChannelViewInstance();
+        }
+    }
+
+    //! Hiển thị danh sách người theo dõi
+    public void showMyListFollower() {
+        Channel myChannel = userLogin.get(0).getMyChannel();
+        for (User u : myChannel.getFollowerList()) {
+            System.out.println("ID: " + u.getId() + " - Name: " + u.getName());
+        }
+        while (true){
+            System.out.println("Type BACK to return: ");
+            String back = Config.scanner().nextLine();
+            if (back.equalsIgnoreCase("back")) {
+                getMyChannelViewInstance();
+                break;
+            }
         }
     }
 }

@@ -7,4 +7,5 @@ import service.IGenericService;
 public interface IChannelService extends IGenericService<Channel> {
     Channel findByName(String name);
     User findChannelFollower(User user, Channel channel);
+    Integer calTotalAllVideosView(Channel channel);
 }

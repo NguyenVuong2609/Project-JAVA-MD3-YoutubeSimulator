@@ -86,9 +86,7 @@ public class Channel implements Serializable {
         return "Channel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", videoList=" + videoList +
                 ", earnMoneyStatus=" + earnMoneyStatus +
-                ", followerList=" + followerList +
                 '}';
     }
 }

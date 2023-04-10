@@ -3,6 +3,7 @@ package service.channel;
 import config.Config;
 import model.Channel;
 import model.User;
+import model.Video;
 
 import java.util.List;
 
@@ -55,9 +56,19 @@ public class ChannelServiceIMPL implements IChannelService {
     @Override
     public User findChannelFollower(User user, Channel channel) {
         for (User u : channel.getFollowerList()) {
-            if (u.getId() == u.getId())
+            if (u.getId() == user.getId())
                 return u;
         }
         return null;
+    }
+
+    @Override
+    public Integer calTotalAllVideosView(Channel channel) {
+        int sumOfLikes = 0;
+        List<Video> videoList = channel.getVideoList();
+        for (int i = 0; i < videoList.size(); i++) {
+            sumOfLikes += videoList.get(i).getViews();
+        }
+        return sumOfLikes;
     }
 }

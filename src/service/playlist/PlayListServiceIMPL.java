@@ -56,10 +56,9 @@ public class PlayListServiceIMPL implements IPlayListService {
     public List<ListVideo> findListOfPlayListByName(String name) {
         List<ListVideo> searchListVideo = new ArrayList<>();
         for (ListVideo list : listVideos) {
-            if (list.getName().equalsIgnoreCase(name))
+            if (list.getName().toLowerCase().contains(name.toLowerCase()))
                 searchListVideo.add(list);
         }
         return searchListVideo;
     }
-
 }

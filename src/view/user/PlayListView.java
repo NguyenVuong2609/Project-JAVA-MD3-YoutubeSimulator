@@ -32,9 +32,9 @@ public class PlayListView {
     public void showMyPlayLists() {
         List<ListVideo> myAllPlayLists = userLogin.get(0).getMyPlaylist();
         if (myAllPlayLists != null) {
-            System.out.printf("---------------- My All Playlist ----------------");
+            System.out.printf("---------------- My All Playlist ---------------- \n");
             for (int i = 0; i < myAllPlayLists.size(); i++) {
-                System.out.printf("%d. Playlist Name: %s - Videos: %d \n", i, myAllPlayLists.get(i).getName(), myAllPlayLists.get(i).getPlaylist().size());
+                System.out.printf("%d. Playlist Name: %s - Videos: %d \n", (i + 1), myAllPlayLists.get(i).getName(), myAllPlayLists.get(i).getPlaylist().size());
             }
             while (true) {
                 System.out.println("Type BACK to return Menu: ");
@@ -91,7 +91,7 @@ public class PlayListView {
         if (allPlaylist != null) {
             System.out.printf("---------------- My All Playlist ----------------\n");
             for (int i = 0; i < allPlaylist.size(); i++) {
-                System.out.printf("%d. Playlist Name: %s - Videos: %d \n", i, allPlaylist.get(i).getName(), allPlaylist.get(i).getPlaylist().size());
+                System.out.printf("%d. Playlist Name: %s - Videos: %d \n", (i + 1), allPlaylist.get(i).getName(), allPlaylist.get(i).getPlaylist().size());
             }
             int id;
             while (true) {
@@ -117,6 +117,7 @@ public class PlayListView {
                     userController.updateUserLogin(user);
                     userController.updateUser(user, 0);
                     System.out.println(Config.SUCCESS_ALERT);
+                    YoutubeView.getYoutubeViewInstance();
                     break;
                 }
                 if (choice.equalsIgnoreCase("n")) {
@@ -161,12 +162,15 @@ public class PlayListView {
                 }
             }
             int videoIndex;
-            do {
-                System.out.println("Enter a video's index that you want to view: ");
-                videoIndex = Config.validateInt();
-            } while (VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)) == null);
-            YoutubeFrame.getYoutubeViewInstance().showVideoFrame(VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)));
-            YoutubeFrame.getYoutubeViewInstance().actionMenu(VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)));
+            System.out.println("Enter a video's index that you want to view: ");
+            videoIndex = Config.validateInt();
+            if (VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)) != null) {
+                YoutubeFrame.getYoutubeViewInstance().showVideoFrame(VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)));
+                YoutubeFrame.getYoutubeViewInstance().actionMenu(VideoController.getVideoControllerInstance().findVideoById(idList.get(videoIndex - 1)));
+            } else {
+                System.err.println("Can't play this video.");
+                YoutubeView.getYoutubeViewInstance();
+            }
         } else {
             System.err.println("No result!");
             YoutubeView.getYoutubeViewInstance();
@@ -187,7 +191,7 @@ public class PlayListView {
                 if (index < 1 || index > allMyPlayList.size())
                     System.out.println(Config.OOA_ALERT);
             } while (index < 1 || index > allMyPlayList.size());
-            boolean check = addVideoToPlaylist(allMyPlayList.get(index-1),video);
+            boolean check = addVideoToPlaylist(allMyPlayList.get(index - 1), video);
             if (check) {
                 System.out.println(Config.SUCCESS_ALERT);
             } else {
@@ -199,17 +203,34 @@ public class PlayListView {
     }
 
     public boolean addVideoToPlaylist(ListVideo listVideo, Video video) {
-        if (listVideo.getPlaylist().size()==0){
+        User user = userLogin.get(0);
+        List<ListVideo> allMyPlayList = user.getMyPlaylist();
+        if (listVideo.getPlaylist().size() == 0) {
             listVideo.getPlaylist().add(video.getId());
+            int index = allMyPlayList.indexOf(listVideo);
+            allMyPlayList.set(index, listVideo);
+            user.setMyPlaylist(allMyPlayList);
             playListController.updatePlaylist(listVideo);
-        } else {
+            userController.updateUser(user, 0);
+            userController.updateUserLogin(user);
+            return true;
+        } else if (listVideo.getPlaylist().size() > 0) {
+            boolean flag = true;
             for (int i = 0; i < listVideo.getPlaylist().size(); i++) {
                 if (listVideo.getPlaylist().get(i) != video.getId()) {
                     listVideo.getPlaylist().add(video.getId());
-                    playListController.updatePlaylist(listVideo);
-                    return true;
+                    flag = false;
                 }
             }
+            if (flag)
+                return false;
+            int index = allMyPlayList.indexOf(listVideo);
+            allMyPlayList.set(index, listVideo);
+            user.setMyPlaylist(allMyPlayList);
+            playListController.updatePlaylist(listVideo);
+            userController.updateUser(user, 0);
+            userController.updateUserLogin(user);
+            return true;
         }
         return false;
     }

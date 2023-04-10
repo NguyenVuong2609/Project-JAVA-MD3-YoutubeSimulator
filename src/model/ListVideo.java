@@ -64,7 +64,6 @@ public class ListVideo implements Serializable {
         return "ListVideo{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", playlist=" + playlist +
                 '}';
     }
 }
