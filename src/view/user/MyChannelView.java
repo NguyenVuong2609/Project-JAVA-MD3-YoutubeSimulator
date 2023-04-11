@@ -174,7 +174,6 @@ public class MyChannelView {
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
             if (!myChannel.isEarnMoneyStatus()){
-                System.out.println(channelController.calTotalAllVideosView(myChannel));
                 if (myChannel.getFollowerList().size() > 2 && channelController.calTotalAllVideosView(myChannel) > 10) {
                     myChannel.setEarnMoneyStatus(true);
                     userLogin.get(0).setMyChannel(myChannel);
@@ -189,7 +188,8 @@ public class MyChannelView {
                 System.out.printf("|" + "  2. %-61s" + "|\n", "Owner: " + myChannel.getOwner().getName());
                 System.out.printf("|" + "  3. %-61s" + "|\n", "Follower: " + myChannel.getFollowerList().size());
                 System.out.printf("|" + "  4. %-61s" + "|\n", "Video: " + myChannel.getVideoList().size());
-                System.out.printf("|" + "  5. %-61s" + "|\n", "Earn Money Permission: " + (myChannel.isEarnMoneyStatus() ? "Yes" : "Not yet"));
+                System.out.printf("|" + "  5. %-61s" + "|\n", "Total views: " + channelController.calTotalAllVideosView(myChannel));
+                System.out.printf("|" + "  6. %-61s" + "|\n", "Earn Money Permission: " + (myChannel.isEarnMoneyStatus() ? "Yes" : "Not yet"));
                 System.out.println("---------------------------- My Channel ----------------------------" + ColorConsole.RESET);
                 System.out.println("Type BACK to return: ");
                 String back = Config.scanner().nextLine();

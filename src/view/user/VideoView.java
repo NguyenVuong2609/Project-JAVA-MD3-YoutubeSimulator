@@ -110,7 +110,7 @@ public class VideoView {
     }
 
     //! Xóa video
-    public void deleteVideo() {
+    public synchronized void deleteVideo() {
         User user = userLogin.get(0);
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
@@ -144,8 +144,8 @@ public class VideoView {
                         user.setMyChannel(myChannel);
                         videoController.deleteVideo(id);
                         channelController.updateChannel(myChannel);
-                        userController.updateUserLogin(user);
                         userController.updateUser(user, 0);
+                        userController.updateUserLogin(user);
                         System.out.println(Config.SUCCESS_ALERT);
                         Config.breakTime();
                         MyChannelView.getMyChannelViewInstance();
@@ -209,18 +209,14 @@ public class VideoView {
                 userController.updateUserLogin(user);
                 userController.updateUser(user, 0);
                 System.out.println(Config.SUCCESS_ALERT);
-                Config.breakTime();
-                MyChannelView.getMyChannelViewInstance();
             } else {
                 System.err.println("You don't have any video to delete!");
-                Config.breakTime();
-                MyChannelView.getMyChannelViewInstance();
             }
         } else {
             System.err.println(Config.CNE_ALERT);
-            Config.breakTime();
-            MyChannelView.getMyChannelViewInstance();
         }
+        Config.breakTime();
+        MyChannelView.getMyChannelViewInstance();
     }
 
     //! Hiển thị danh sách tìm kiếm video theo tên

@@ -5,17 +5,22 @@ import config.Config;
 import controller.CategoryController;
 import dto.response.ResponseMessage;
 import model.Category;
-import model.Video;
-import view.user.YoutubeView;
 
 import java.util.List;
 
 public class CategoryView {
+    public static CategoryView categoryViewInstance;
+    public static CategoryView getCategoryViewInstance(){
+        if (categoryViewInstance == null)
+            categoryViewInstance = new CategoryView();
+        return categoryViewInstance;
+    }
     CategoryController categoryController = new CategoryController();
     List<Category> categoryList = categoryController.getCategoryList();
 
     public CategoryView() {
-        while (true) {
+        boolean flag = true;
+        while (flag) {
             System.out.println(ColorConsole.WHITE_BRIGHT + "❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ CATEGORY MENU ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀");
             System.out.printf("|" + "  1. %-89s" + "|\n", "Show Category List");
             System.out.printf("|" + "  2. %-89s" + "|\n", "Create New Category");
@@ -29,21 +34,27 @@ public class CategoryView {
             switch (choice) {
                 case 1:
                     showCategoryList();
+                    flag = false;
                     break;
                 case 2:
                     createCategory();
+                    flag = false;
                     break;
                 case 3:
                     updateCategory();
+                    flag = false;
                     break;
                 case 4:
                     deleteCategory();
+                    flag = false;
                     break;
                 case 5:
                     showCategoryDetails();
+                    flag = false;
                     break;
                 case 6:
                     ProfileView.getProfileViewInstance();
+                    flag = false;
                     break;
                 default:
                     System.out.println(Config.OOA_ALERT);
@@ -86,11 +97,6 @@ public class CategoryView {
                 category.setName(name);
             } else {
                 System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 new CategoryView();
                 break;
             }

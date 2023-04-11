@@ -32,7 +32,7 @@ public class PlayListView {
     public void showMyPlayLists() {
         List<ListVideo> myAllPlayLists = userLogin.get(0).getMyPlaylist();
         if (myAllPlayLists != null) {
-            System.out.printf("---------------- My All Playlist ---------------- \n");
+            System.out.print("---------------- My All Playlist ---------------- \n");
             for (int i = 0; i < myAllPlayLists.size(); i++) {
                 System.out.printf("%d. Playlist Name: %s - Videos: %d \n", (i + 1), myAllPlayLists.get(i).getName(), myAllPlayLists.get(i).getPlaylist().size());
             }
@@ -89,7 +89,7 @@ public class PlayListView {
         List<ListVideo> allPlaylist = user.getMyPlaylist();
         ListVideo listDelete = null;
         if (allPlaylist != null) {
-            System.out.printf("---------------- My All Playlist ----------------\n");
+            System.out.print("---------------- My All Playlist ----------------\n");
             for (int i = 0; i < allPlaylist.size(); i++) {
                 System.out.printf("%d. Playlist Name: %s - Videos: %d \n", (i + 1), allPlaylist.get(i).getName(), allPlaylist.get(i).getPlaylist().size());
             }
@@ -134,6 +134,9 @@ public class PlayListView {
                 }
                 System.out.println(Config.OOA_ALERT);
             }
+        } else {
+            System.err.println("You don't have any playlist to delete!");
+            YoutubeView.getYoutubeViewInstance();
         }
     }
 
@@ -144,7 +147,7 @@ public class PlayListView {
         List<ListVideo> searchData = playListController.findListOfPlayListByName(name);
         if (searchData.size() > 0) {
             for (int i = 0; i < searchData.size(); i++) {
-                System.out.printf("%s. Playlist's name: %s - Video: %s", (i + 1), searchData.get(i).getName(), searchData.get(i).getPlaylist().size());
+                System.out.printf("%s. Playlist's name: %s - Video: %s\n", (i + 1), searchData.get(i).getName(), searchData.get(i).getPlaylist().size());
             }
             int index;
             do {
@@ -155,7 +158,7 @@ public class PlayListView {
             for (int i = 0; i < idList.size(); i++) {
                 for (Video video : videoList) {
                     if (idList.get(i) == video.getId()) {
-                        System.out.printf("%s. Video's name: %s - Views: %s - Owner: %s", (i + 1), video.getVideoName(), video.getViews(), video.getOwner().getName());
+                        System.out.printf("%s. Video's name: %s - Views: %s - Owner: %s\n", (i + 1), video.getVideoName(), video.getViews(), video.getOwner().getName());
                         break;
                     }
                     System.out.println((i + 1) + ". This video is unavailable");

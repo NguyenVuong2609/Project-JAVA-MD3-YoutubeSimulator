@@ -236,11 +236,10 @@ public class UserView {
                 } else {
                     System.out.println(Config.OOA_ALERT);
                 }
-                new UserManagementView();
             } else {
                 System.out.println(Config.ID_NOT_EXIST);
-                new UserManagementView();
             }
+            UserManagementView.getUserManagementViewInstance();
         }
     }
 
@@ -301,11 +300,10 @@ public class UserView {
                 } else {
                     System.out.println(Config.OOA_ALERT);
                 }
-                new UserManagementView();
             } else {
                 System.out.println(Config.ID_NOT_EXIST);
-                new UserManagementView();
             }
+            UserManagementView.getUserManagementViewInstance();
         }
     }
 }

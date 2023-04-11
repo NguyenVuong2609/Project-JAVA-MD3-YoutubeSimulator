@@ -2,14 +2,11 @@ package view;
 
 import config.ColorConsole;
 import config.Config;
-import config.YoutubeFrame;
 import controller.UserController;
 import model.User;
-import model.Video;
 import view.admin.ProfileView;
 import view.user.UserView;
 
-import java.util.List;
 
 
 public class Navbar {
@@ -18,14 +15,14 @@ public class Navbar {
     public Navbar() {
         User user = userController.getUserLogin();
         if (user != null) {
-//            try {
-//                for (int i = 3; i > 0; i--) {
-//                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
-//                    Thread.sleep(1000);
-//                }
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                for (int i = 3; i > 0; i--) {
+                    System.out.println(ColorConsole.GREEN_BOLD_BRIGHT + "Waiting..." + i + " seconds" + ColorConsole.RESET);
+                    Thread.sleep(1000);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + "Welcome " + user.getName() + ColorConsole.RESET);
             new ProfileView();
         } else {
@@ -60,11 +57,5 @@ public class Navbar {
 
     public static void main(String[] args) {
         new Navbar();
-//        List<User> userList = new Config<User>().readFromFile(Config.PATH_USER);
-//        Set<Role> setRoles = userList.get(1).getRoles();
-//        List<Role> listRoles = new ArrayList<>(setRoles);
-//        System.out.println(listRoles.get(0).getName());
-//        List<User> users = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
-//        YoutubeFrame.getYoutubeViewInstance().progressBar(users.get(0).getMyChannel().getVideoList().get(0));
     }
 }

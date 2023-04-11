@@ -6,22 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/YoutubeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/YoutubeFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controller/ChannelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ChannelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/category.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/category.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/channel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/channel.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/listvideo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/listvideo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Channel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Channel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/ListVideo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/ListVideo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/channel/ChannelServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/channel/ChannelServiceIMPL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/channel/IChannelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/channel/IChannelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/playlist/PlayListServiceIMPL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/playlist/PlayListServiceIMPL.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/CategoryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/ProfileView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/MyChannelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/PlayListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/PlayListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/user/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/VideoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/VideoView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +113,8 @@
       <workItem from="1680882109030" duration="7101000" />
       <workItem from="1680962231887" duration="9517000" />
       <workItem from="1681023352952" duration="21405000" />
-      <workItem from="1681087273425" duration="27848000" />
+      <workItem from="1681087273425" duration="29392000" />
+      <workItem from="1681175625917" duration="4428000" />
     </task>
     <servers />
   </component>
