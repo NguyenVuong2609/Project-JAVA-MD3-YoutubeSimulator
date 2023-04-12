@@ -34,8 +34,8 @@ public class VideoView {
 
     //! Tạo video mới
     public void createVideo() {
-        User user = userLogin.get(0);
-        if (user.getMyChannel() != null) {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
+        if (userLogin.get(0).getMyChannel() != null) {
             Category category = null;
             int id;
             if (videoList.size() == 0) {
@@ -67,26 +67,28 @@ public class VideoView {
                 durations = Config.validateInt();
                 if (durations <= 0) System.out.println(Config.FORMAT_ALERT);
             } while (durations <= 0);
-            Channel myChannel = user.getMyChannel();
+            Channel myChannel = userLogin.get(0).getMyChannel();
             List<Video> myListVideo = myChannel.getVideoList();
-            Video video = new Video(id, videoName, user, category, durations);
+            Video video = new Video(id, videoName,userLogin.get(0), category, durations);
             myListVideo.add(video);
             myChannel.setVideoList(myListVideo);
-            user.setMyChannel(myChannel);
+            userLogin.get(0).setMyChannel(myChannel);
             videoController.createVideo(video);
             channelController.updateChannel(myChannel);
-            userController.updateUser(user, 0);
-            userController.updateUserLogin(user);
+            userController.updateUser(userLogin.get(0), 0);
+            userController.updateUserLogin(userLogin.get(0));
             System.out.println(Config.SUCCESS_ALERT);
         } else {
             System.out.println(Config.CNE_ALERT);
         }
         Config.breakTime();
         MyChannelView.getMyChannelViewInstance();
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
     }
 
     //! Hiển thị danh sách video của tôi
     public void showAllMyVideo() {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         if (user.getMyChannel() != null) {
             List<Video> myVideoList = user.getMyChannel().getVideoList();
@@ -111,6 +113,7 @@ public class VideoView {
 
     //! Xóa video
     public synchronized void deleteVideo() {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
@@ -171,6 +174,7 @@ public class VideoView {
 
     //! Sửa video
     public void editMyVideo() {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
@@ -244,6 +248,7 @@ public class VideoView {
 
     //! Like video
     public void likeVideo(Video video) {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         List<User> likedUserList = video.getLikeList();
         User user = userLogin.get(0);
         Channel channel = video.getOwner().getMyChannel();
@@ -355,6 +360,7 @@ public class VideoView {
 
     //! Follow channel
     public void followChannel(Channel channel) {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         if (channel.getOwner().getId() != user.getId()) {
             List<User> followerList = channel.getFollowerList();

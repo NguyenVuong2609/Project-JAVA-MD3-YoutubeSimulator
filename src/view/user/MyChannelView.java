@@ -4,8 +4,10 @@ import config.ColorConsole;
 import config.Config;
 import controller.ChannelController;
 import controller.UserController;
+import controller.VideoController;
 import model.Channel;
 import model.User;
+import model.Video;
 import view.admin.ProfileView;
 
 
@@ -21,7 +23,9 @@ public class MyChannelView {
 
     ChannelController channelController = ChannelController.getChannelControllerInstance();
     UserController userController = UserController.getUserControllerInstance();
+    VideoController videoController = VideoController.getVideoControllerInstance();
     List<Channel> channelList = new Config<Channel>().readFromFile(Config.PATH_CHANNEL);
+    List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
     List<User> userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
 
     public MyChannelView() {
@@ -108,6 +112,7 @@ public class MyChannelView {
                     channelController.createChannel(channel);
                     System.out.println(Config.SUCCESS_ALERT);
                     Config.breakTime();
+                    userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
                     getMyChannelViewInstance();
                     break;
                 }
@@ -115,7 +120,7 @@ public class MyChannelView {
         } else {
             System.err.println("You already have a channel!");
             Config.breakTime();
-            new MyChannelView();
+            MyChannelView.getMyChannelViewInstance();
         }
     }
 
@@ -124,6 +129,7 @@ public class MyChannelView {
         User user = userLogin.get(0);
         if (user.getMyChannel() == null) {
             System.out.println(Config.CNE_ALERT);
+            getMyChannelViewInstance();
         } else {
             while (true) {
                 System.out.println("Enter your new channel's name: ");
@@ -138,6 +144,7 @@ public class MyChannelView {
                     userController.updateUserLogin(user);
                     System.out.println(Config.SUCCESS_ALERT);
                     Config.breakTime();
+                    userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
                     getMyChannelViewInstance();
                     break;
                 }
@@ -153,6 +160,10 @@ public class MyChannelView {
                 System.out.println("Are you sure to delete your channel with " + user.getMyChannel().getFollowerList().size() + " followers and " + user.getMyChannel().getVideoList().size() + " videos? Type Y/N");
                 String choice = Config.validateString();
                 if (choice.equalsIgnoreCase("y")) {
+                    List<Video> myChannelVideos = user.getMyChannel().getVideoList();
+                    for (Video vid : myChannelVideos) {
+                        videoController.deleteVideo(vid.getId());
+                    }
                     channelController.deleteChannel(user.getMyChannel().getId());
                     user.setMyChannel(null);
                     userController.updateUser(user, 0);
@@ -177,13 +188,13 @@ public class MyChannelView {
     public void showMyChannelInfo() {
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
-            if (!myChannel.isEarnMoneyStatus()){
-                if (myChannel.getFollowerList().size() > 2 && channelController.calTotalAllVideosView(myChannel) > 10) {
+            if (!myChannel.isEarnMoneyStatus()) {
+                if (myChannel.getFollowerList().size() > 1 && channelController.calTotalAllVideosView(myChannel) > 5) {
                     myChannel.setEarnMoneyStatus(true);
                     userLogin.get(0).setMyChannel(myChannel);
                     channelController.updateChannel(myChannel);
                     userController.updateUserLogin(userLogin.get(0));
-                    userController.updateUser(userLogin.get(0),0);
+                    userController.updateUser(userLogin.get(0), 0);
                 }
             }
             while (true) {
@@ -198,6 +209,7 @@ public class MyChannelView {
                 System.out.println("Type BACK to return: ");
                 String back = Config.scanner().nextLine();
                 if (back.equalsIgnoreCase("back")) {
+                    userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
                     getMyChannelViewInstance();
                     break;
                 }
@@ -215,10 +227,11 @@ public class MyChannelView {
         for (User u : myChannel.getFollowerList()) {
             System.out.println("ID: " + u.getId() + " - Name: " + u.getName());
         }
-        while (true){
+        while (true) {
             System.out.println("Type BACK to return: ");
             String back = Config.scanner().nextLine();
             if (back.equalsIgnoreCase("back")) {
+                userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
                 getMyChannelViewInstance();
                 break;
             }
