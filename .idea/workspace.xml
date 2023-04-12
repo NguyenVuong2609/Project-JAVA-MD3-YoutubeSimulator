@@ -6,19 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/channel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/channel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/listvideo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/listvideo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Navbar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Navbar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/CategoryView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/ProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/UserManagementView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/MyChannelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/PlayListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/PlayListView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/VideoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/VideoView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +104,8 @@
       <workItem from="1680962231887" duration="9517000" />
       <workItem from="1681023352952" duration="21405000" />
       <workItem from="1681087273425" duration="29392000" />
-      <workItem from="1681175625917" duration="4428000" />
+      <workItem from="1681175625917" duration="5680000" />
+      <workItem from="1681263354884" duration="4646000" />
     </task>
     <servers />
   </component>

@@ -26,6 +26,7 @@ public class PlayListView {
     List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
     PlayListController playListController = new PlayListController();
     UserController userController = UserController.getUserControllerInstance();
+    VideoController videoController = VideoController.getVideoControllerInstance();
     List<ListVideo> allListVideo = playListController.getPlayLists();
 
     //! Hiển thị các playlist
@@ -191,8 +192,7 @@ public class PlayListView {
             do {
                 System.out.println("Enter a playlist's index that you want to add this video: ");
                 index = Config.validateInt();
-                if (index < 1 || index > allMyPlayList.size())
-                    System.out.println(Config.OOA_ALERT);
+                if (index < 1 || index > allMyPlayList.size()) System.out.println(Config.OOA_ALERT);
             } while (index < 1 || index > allMyPlayList.size());
             boolean check = addVideoToPlaylist(allMyPlayList.get(index - 1), video);
             if (check) {
@@ -205,6 +205,7 @@ public class PlayListView {
         }
     }
 
+    //! Thêm video vào playlist
     public boolean addVideoToPlaylist(ListVideo listVideo, Video video) {
         User user = userLogin.get(0);
         List<ListVideo> allMyPlayList = user.getMyPlaylist();
@@ -225,8 +226,7 @@ public class PlayListView {
                     flag = false;
                 }
             }
-            if (flag)
-                return false;
+            if (flag) return false;
             int index = allMyPlayList.indexOf(listVideo);
             allMyPlayList.set(index, listVideo);
             user.setMyPlaylist(allMyPlayList);
@@ -236,5 +236,58 @@ public class PlayListView {
             return true;
         }
         return false;
+    }
+
+    //! Sửa playlist
+    public void editMyPlaylist() {
+        List<ListVideo> allMyPlaylist = userLogin.get(0).getMyPlaylist();
+        int index;
+        if (allMyPlaylist != null) {
+            for (int i = 0; i < allMyPlaylist.size(); i++) {
+                System.out.printf(ColorConsole.GREEN_BRIGHT + "%s. Playlist: %s - Videos: %s \n" + ColorConsole.RESET, (i + 1), allMyPlaylist.get(i).getName(), allMyPlaylist.get(i).getPlaylist().size());
+            }
+            do {
+                System.out.println("Enter a playlist's index that you want to edit: ");
+                index = Config.validateInt();
+                if (index < 1 || index > allMyPlaylist.size()) System.out.println(Config.OOA_ALERT);
+            } while (index < 1 || index > allMyPlaylist.size());
+            List<Integer> targetList = allMyPlaylist.get(index - 1).getPlaylist();
+            for (int i = 0; i < targetList.size(); i++) {
+                Video vid = videoController.findVideoById(targetList.get(i));
+                if (vid != null) {
+                    System.out.printf("%s. Video name: %s - Owner: %s\n", (i + 1), vid.getVideoName(), vid.getOwner().getName());
+                } else {
+                    System.out.println((i + 1) + ". This video is unavailable.");
+                }
+            }
+            String choice;
+            do {
+                System.out.println("Do you want to remove any video in this playlist? Type Y/N");
+                choice = Config.validateString();
+                if (choice.equalsIgnoreCase("y") || choice.equalsIgnoreCase("n"))
+                    break;
+            } while (true);
+            if (choice.equalsIgnoreCase("y")) {
+                int vidIndex;
+                do {
+                    System.out.println("Enter a video's index that you want to remove from playlist: ");
+                    vidIndex = Config.validateInt();
+                    if (vidIndex < 1 || vidIndex > targetList.size())
+                        System.out.println(Config.OOA_ALERT);
+                } while (vidIndex < 1 || vidIndex > targetList.size());
+                targetList.remove(vidIndex - 1);
+                allMyPlaylist.get(index - 1).setPlaylist(targetList);
+                userLogin.get(0).setMyPlaylist(allMyPlaylist);
+                playListController.updatePlaylist(allMyPlaylist.get(index - 1));
+                userController.updateUser(userLogin.get(0), 0);
+                userController.updateUserLogin(userLogin.get(0));
+                System.out.println(Config.SUCCESS_ALERT);
+                Config.breakTime();
+                MyChannelView.getMyChannelViewInstance();
+            }
+            if (choice.equalsIgnoreCase("n")){
+                MyChannelView.getMyChannelViewInstance();
+            }
+        }
     }
 }

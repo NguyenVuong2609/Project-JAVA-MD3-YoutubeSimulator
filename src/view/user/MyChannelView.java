@@ -35,8 +35,9 @@ public class MyChannelView {
         System.out.printf("|" + "  7. %-85s" + "|\n", "Delete My Channel");
         System.out.printf("|" + "  8. %-85s" + "|\n", "Show My Channel Info");
         System.out.printf("|" + "  9. %-85s" + "|\n", "Show My Playlist");
-        System.out.printf("|" + "  10. %-84s" + "|\n", "Show all follower");
-        System.out.printf("|" + "  11. %-84s" + "|\n", "Back");
+        System.out.printf("|" + "  10. %-84s" + "|\n", "Edit My Playlist");
+        System.out.printf("|" + "  11. %-84s" + "|\n", "Show all follower");
+        System.out.printf("|" + "  12. %-84s" + "|\n", "Back");
         System.out.println("❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀ MY CHANNEL ❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀❀" + ColorConsole.RESET);
         System.out.println("Please enter your choice: ");
         int choice = Config.validateInt();
@@ -69,9 +70,12 @@ public class MyChannelView {
                 PlayListView.getPlayListViewInstance().showMyPlayLists();
                 break;
             case 10:
-                showMyListFollower();
+                PlayListView.getPlayListViewInstance().editMyPlaylist();
                 break;
             case 11:
+                showMyListFollower();
+                break;
+            case 12:
                 ProfileView.getProfileViewInstance();
                 break;
             default:
