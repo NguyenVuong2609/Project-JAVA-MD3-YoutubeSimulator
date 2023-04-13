@@ -90,6 +90,7 @@ public class MyChannelView {
 
     //! Tạo kênh mới
     public void createChannel() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         if (user.getMyChannel() == null) {
             int id;
@@ -126,6 +127,7 @@ public class MyChannelView {
 
     //! Cập nhật tên cho kênh
     public void updateChannelName() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         if (user.getMyChannel() == null) {
             System.out.println(Config.CNE_ALERT);
@@ -154,6 +156,7 @@ public class MyChannelView {
 
     //! Xóa kênh
     public void deleteMyChannel() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         if (user.getMyChannel() != null) {
             while (true) {
@@ -186,10 +189,11 @@ public class MyChannelView {
 
     //! Xem chi tiết kênh
     public void showMyChannelInfo() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         Channel myChannel = userLogin.get(0).getMyChannel();
         if (myChannel != null) {
             if (!myChannel.isEarnMoneyStatus()) {
-                if (myChannel.getFollowerList().size() > 1 && channelController.calTotalAllVideosView(myChannel) > 5) {
+                if (myChannel.getFollowerList().size() > 0 && channelController.calTotalAllVideosView(myChannel) > 5) {
                     myChannel.setEarnMoneyStatus(true);
                     userLogin.get(0).setMyChannel(myChannel);
                     channelController.updateChannel(myChannel);
@@ -223,6 +227,7 @@ public class MyChannelView {
 
     //! Hiển thị danh sách người theo dõi
     public void showMyListFollower() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         Channel myChannel = userLogin.get(0).getMyChannel();
         for (User u : myChannel.getFollowerList()) {
             System.out.println("ID: " + u.getId() + " - Name: " + u.getName());

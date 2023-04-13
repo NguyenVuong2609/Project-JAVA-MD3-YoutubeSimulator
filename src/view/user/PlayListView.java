@@ -31,6 +31,7 @@ public class PlayListView {
 
     //! Hiển thị các playlist
     public void showMyPlayLists() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         List<ListVideo> myAllPlayLists = userLogin.get(0).getMyPlaylist();
         if (myAllPlayLists != null) {
             System.out.print("---------------- My All Playlist ---------------- \n");
@@ -55,6 +56,7 @@ public class PlayListView {
 
     //! Tạo mới playlist
     public void createPlayList() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         List<ListVideo> playList = user.getMyPlaylist() == null ? new ArrayList<>() : user.getMyPlaylist();
         int id;
@@ -85,6 +87,7 @@ public class PlayListView {
 
     //! Xóa playlist
     public void deletePlaylist() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         boolean flag = false;
         User user = userLogin.get(0);
         List<ListVideo> allPlaylist = user.getMyPlaylist();
@@ -183,6 +186,7 @@ public class PlayListView {
 
     //! Thêm video vào playlist
     public void addVideoToPlaylistMenu(Video video) {
+        userLogin = new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         List<ListVideo> allMyPlayList = userLogin.get(0).getMyPlaylist();
         if (allMyPlayList != null) {
             for (int i = 0; i < allMyPlayList.size(); i++) {
@@ -207,6 +211,7 @@ public class PlayListView {
 
     //! Thêm video vào playlist
     public boolean addVideoToPlaylist(ListVideo listVideo, Video video) {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         User user = userLogin.get(0);
         List<ListVideo> allMyPlayList = user.getMyPlaylist();
         if (listVideo.getPlaylist().size() == 0) {
@@ -240,6 +245,7 @@ public class PlayListView {
 
     //! Sửa playlist
     public void editMyPlaylist() {
+        userLogin= new Config<User>().readFromFile(Config.PATH_USER_LOGIN);
         List<ListVideo> allMyPlaylist = userLogin.get(0).getMyPlaylist();
         int index;
         if (allMyPlaylist != null) {

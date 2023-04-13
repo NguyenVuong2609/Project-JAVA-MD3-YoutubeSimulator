@@ -7,13 +7,15 @@
     <list default="true" id="3f380777-7ae9-4b86-9560-336b377e925d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/InitialData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/InitialData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/YoutubeFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/YoutubeFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/database/category.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/category.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/channel.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/channel.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/listvideo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/listvideo.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/database/user_login.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/user_login.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/database/video.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/database/video.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/admin/CategoryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/admin/CategoryView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/user/MyChannelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/MyChannelView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/user/VideoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/VideoView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/user/PlayListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/PlayListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/user/UserView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/user/UserView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +112,9 @@
       <workItem from="1681023352952" duration="21405000" />
       <workItem from="1681087273425" duration="29392000" />
       <workItem from="1681175625917" duration="5680000" />
-      <workItem from="1681263354884" duration="10563000" />
+      <workItem from="1681263354884" duration="11192000" />
+      <workItem from="1681348915857" duration="4318000" />
+      <workItem from="1681356573111" duration="2734000" />
     </task>
     <servers />
   </component>

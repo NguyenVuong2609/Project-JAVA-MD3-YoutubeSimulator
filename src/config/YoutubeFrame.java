@@ -73,7 +73,7 @@ public class YoutubeFrame {
                 for (; j <= 100; j++) System.out.print(' ');
                 System.out.print(i + "% - Durations: " + (video.getDurations() / 60) + " min " + (video.getDurations() % 60) + " sec");
                 TimeUnit.SECONDS.sleep(1);
-                i += 10;
+                i += 20;
                 System.out.println();
             }
         } catch (InterruptedException e) {

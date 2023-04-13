@@ -126,8 +126,8 @@ public class UserView {
                 signInDTO.setUsername(username);
                 signInDTO.setPassword(password);
                 count++;
-                if (count == 5) {
-                    System.err.println("You entered more than 5 times, please try again later!");
+                if (count == 3) {
+                    System.err.println("You entered more than 3 times, please try again later!");
                     new Navbar();
                     break;
                 }

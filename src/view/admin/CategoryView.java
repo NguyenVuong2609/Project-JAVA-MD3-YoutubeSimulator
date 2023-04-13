@@ -3,20 +3,24 @@ package view.admin;
 import config.ColorConsole;
 import config.Config;
 import controller.CategoryController;
+import controller.VideoController;
 import dto.response.ResponseMessage;
 import model.Category;
+import model.Video;
 
 import java.util.List;
 
 public class CategoryView {
     public static CategoryView categoryViewInstance;
-    public static CategoryView getCategoryViewInstance(){
-        if (categoryViewInstance == null)
-            categoryViewInstance = new CategoryView();
+
+    public static CategoryView getCategoryViewInstance() {
+        if (categoryViewInstance == null) categoryViewInstance = new CategoryView();
         return categoryViewInstance;
     }
+
     CategoryController categoryController = new CategoryController();
     List<Category> categoryList = categoryController.getCategoryList();
+    VideoController videoController = VideoController.getVideoControllerInstance();
 
     public CategoryView() {
         boolean flag = true;
@@ -104,6 +108,7 @@ public class CategoryView {
     }
 
     public void updateCategory() {
+        List<Video> videoList = new Config<Video>().readFromFile(Config.PATH_VIDEO);
         System.out.println("Edit category");
         System.out.println("Category List");
         for (Category category : categoryList) {
@@ -127,6 +132,12 @@ public class CategoryView {
                         category.setName(name);
                     } else {
                         System.out.println(ColorConsole.YELLOW_BOLD_BRIGHT + Config.SUCCESS_ALERT + ColorConsole.RESET);
+                        for (Video vid : videoList) {
+                            if (vid.getCategory().getId() == category.getId()){
+                                vid.getCategory().setName(name);
+                                videoController.updateVideo(vid);
+                            }
+                        }
                         flag = true;
                         break;
                     }
